@@ -4,11 +4,11 @@ public class Register {
     private double amountInRegister;
 
     public Register() {
-        Register register = new Register();
+        this.amountInRegister = 0;
     }
 
-    public void updateAmountInRegister(float payment) {
-        amountInRegister += payment;
+    public void updateAmountInRegister(double payment, double change) {
+        amountInRegister += payment-change;
     }
 
 }

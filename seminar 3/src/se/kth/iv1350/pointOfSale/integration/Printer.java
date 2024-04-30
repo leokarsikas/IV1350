@@ -8,6 +8,12 @@ public class Printer {
     }
 
     public void printReceipt(SaleLogDTO saleLog){
+        System.out.println("------------Begin receipt------------");
 
+        System.out.println("Time of sale: "+saleLog.getTimeOfSale());
+
+
+
+        System.out.println("------------End receipt------------");
     }
 }

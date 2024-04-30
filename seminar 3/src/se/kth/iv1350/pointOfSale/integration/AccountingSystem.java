@@ -9,6 +9,6 @@ public class AccountingSystem {
     }
 
     public void recordSale(SaleLogDTO saleLog){
-
+        System.out.println("Recorded sale in Accounting system");
     }
 }
