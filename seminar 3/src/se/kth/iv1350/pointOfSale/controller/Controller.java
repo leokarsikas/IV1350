@@ -5,17 +5,22 @@ import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.model.Sale;
 
 public class Controller {
+    private Sale sale;
 
     public Controller(){
 
     }
 
     public void startSale(){
-        Sale sale = new Sale();
+        new Sale();
     }
 
-    public SaleLogDTO enterInfo(String itemID, int quantity){
-        return sale.isItemAlreadyInSale(itemID, quantity);
+    public SaleLogDTO enterInfo(String itemID){
+        return sale.addItem(itemID);
+    }
+
+    public double endSale(){
+        return sale.getRunningTotal();
     }
 
 /*

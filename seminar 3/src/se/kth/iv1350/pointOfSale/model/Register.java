@@ -1,7 +1,7 @@
 package se.kth.iv1350.pointOfSale.model;
 
 public class Register {
-    private float amountInRegister;
+    private double amountInRegister;
 
     public Register() {
         Register register = new Register();

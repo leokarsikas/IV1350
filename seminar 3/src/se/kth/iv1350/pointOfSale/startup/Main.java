@@ -9,12 +9,11 @@ import se.kth.iv1350.pointOfSale.integration.Printer;
 
 public class Main {
     public static void main(String[] args) {
-        Controller contr = new Controller();
-        View view = new View(contr);
         Printer printer = new Printer();
         AccountingSystem accountingSystem= new AccountingSystem();
         InventorySystem inventorySystem = new InventorySystem();
-
+        Controller contr = new Controller();
+        View view = new View(contr);
         view.simulate();
 
     }

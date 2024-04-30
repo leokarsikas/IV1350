@@ -8,13 +8,12 @@ public class ItemDTO {
     private int quantity;
     private float VAT;
 
-    public ItemDTO createItem(String itemID, double price, String description, int quantity, float VAT){
+    public ItemDTO(String itemID, double price, String description, int quantity, float VAT){
         this.itemID = itemID;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
         this.VAT = VAT;
-        return this;
     }
 
     public String getItemID() {
@@ -25,8 +24,16 @@ public class ItemDTO {
         return price;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(double price) {
+        this.price = price;
     }
 
     public void setQuantity() {

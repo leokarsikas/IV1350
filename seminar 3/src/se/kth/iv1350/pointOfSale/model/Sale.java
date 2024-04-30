@@ -8,14 +8,15 @@ import java.time.LocalDateTime;
 
 public class Sale {
     private SaleLogDTO saleLog;
-    private float runningTotal;
+    private double runningTotal;
     private ItemDTO[] items;
     private int itemsCounter = 0;
     private ItemDTO currentItem;
     private LocalDateTime time;
+    private Receipt receipt;
 
-    private Sale(){
-        Sale sale = new Sale();
+    public Sale(){
+        this.receipt = new Receipt(saleLog);
     }
 
     public SaleLogDTO fetchSaleInfo(){
@@ -34,29 +35,37 @@ public class Sale {
         this.time = LocalDateTime.now();
     }
 
-    private void updateSale(String itemID){
-        this.runningTotal += currentItem.getPrice()+currentItem.getVAT();
-    }
-
-    public SaleLogDTO isItemAlreadyInSale(String itemID){
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getItemID() == itemID) {
-                items[i].setQuantity();
-                currentItem = items[i];
-                updateSale(itemID);
-                return saleLog;
-            }
+    public SaleLogDTO addItem(String itemID){
+        int index = isItemAlreadyInSale(itemID);
+        if (index < itemsCounter) {
+            items[index].setQuantity();
+            currentItem = items[index];
         }
-        addItem(itemID);
-        currentItem = items[itemsCounter];
-        updateSale(itemID);
+        else {
+            addNewItem(itemID);
+            currentItem = items[itemsCounter];
+        }
+        updateSale();
         return saleLog;
     }
 
-    private void addItem(String itemID){
-        ItemDTO item = new ItemDTO();
-        item = new InventorySystem().itemLookup(itemID);;
+    private int isItemAlreadyInSale(String itemID){
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].getItemID() == itemID) {
+                return i;
+            }
+        }
+        return itemsCounter;
+    }
+
+    private void addNewItem(String itemID){
+        //Wtf gör man här?
+        ItemDTO item = new InventorySystem().itemLookup(itemID);
         items[++itemsCounter] = item;
+    }
+
+    private void updateSale(){
+        this.runningTotal += currentItem.getPrice()+currentItem.getVAT();
     }
 
 }

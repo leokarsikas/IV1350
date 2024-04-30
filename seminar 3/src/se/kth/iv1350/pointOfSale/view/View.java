@@ -12,6 +12,10 @@ public class View {
     }
 
     public void simulate(){
-
+        System.out.println("Start sale! ");
+        System.out.println("Added abc123 "+contr.enterInfo("abc123"));
+        System.out.println("Added abc123 "+contr.enterInfo("abc123"));
+        System.out.println("Added def456 "+contr.enterInfo("def456"));
+        System.out.println("End sale! "+contr.endSale());
     }
 }
