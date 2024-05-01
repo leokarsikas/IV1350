@@ -7,6 +7,12 @@ import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
 import se.kth.iv1350.pointOfSale.integration.Printer;
 
 
+
+/**
+ * Starts up instances of Printer, AccountingSystem, InventorySystem, Controller, and
+ * View. Then it initiates a simulation via the View class.
+*/
+
 public class Main {
     public static void main(String[] args) {
         Printer printer = new Printer();

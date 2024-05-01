@@ -13,10 +13,16 @@ public class View {
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
 
+    /*
+     * View constructor, using the controller created in main.
+     */
     public View(Controller contr) {
         this.contr = contr;
     }
 
+    /*
+     * Sumulates the cashier performing all its actions in the flow described in Seminar 1.
+     */
     public void simulate(){
         System.out.println("Start sale! ");
         contr.startSale();

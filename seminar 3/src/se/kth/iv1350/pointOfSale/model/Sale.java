@@ -16,15 +16,24 @@ public class Sale {
     private double totalVAT;
     private double amountPaid;
     private double change;
+    private InventorySystem inventorySystem;
 
-    public Sale(){
+    public Sale(InventorySystem invSyst){
         this.runningTotal = 0;
         this.items = new Item[2]; //Arbitrary size for now
         setTimeOfSale();
         this.currentItemIndex = 0;
         this.receipt = new Receipt();
+        this.inventorySystem = invSyst;
     }
 
+    /**
+     * The fetchSaleInfo method returns a SaleLogDTO object with information about items, running
+     * total, total VAT, time, amount paid, and change.
+     * 
+     * @return A SaleLogDTO object is being returned, which contains information about the items,
+     * running total, total VAT, time of sale, amount paid, and change.
+     */
     public SaleLogDTO fetchSaleInfo(){
         return new SaleLogDTO(
                 this.items,
@@ -35,6 +44,13 @@ public class Sale {
                 this.change);
     }
 
+    /**
+     * getCurrentItem returns a new ItemDTO object based on the item at the current index
+     * in the items array.
+     * 
+     * @return An ItemDTO object containing the most recently added item is
+     * returned.
+     */
     public ItemDTO getCurrentItem() {
         return new ItemDTO(items[currentItemIndex]);
     }
@@ -61,7 +77,6 @@ public class Sale {
     }
 
     public ItemDTO addItem(String itemID){
-        System.out.println("Adding item " + itemID);
         ItemDTO item;
         int currentItemIndex = isItemAlreadyInSale(itemID);
 
@@ -85,8 +100,7 @@ public class Sale {
     }
 
     private void addNewItem(String itemID){
-        //Wtf gör man här?
-        ItemDTO item = new InventorySystem().itemLookup(itemID);
+        ItemDTO item =  inventorySystem.itemLookup(itemID);
         items[itemsCounter++] = new Item(item);
     }
 

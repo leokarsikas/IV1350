@@ -14,28 +14,50 @@ public class Controller {
     private AccountingSystem accountingSystem;
     private Register register;
 
-
-    public Controller(){
-        this.sale = new Sale();
+    public Controller() {
         this.inventorySystem = new InventorySystem();
         this.accountingSystem = new AccountingSystem();
         this.register = new Register();
     }
 
-    public void startSale(){
-        this.sale = new Sale();
+    // startSale initializes a new Sale object with a reference to the
+    // inventorySystem.
+    public void startSale() {
+        this.sale = new Sale(this.inventorySystem);
     }
 
-    public ItemDTO enterInfo(String itemID){
+    /**
+     * enterInfofunction adds an item to the sale and returns the information of
+     * that item.
+     * @param itemID parameter is a unique identifier for the item being added to
+     * the sale.
+     * @return An ItemDTO object containing the most recently added item is
+     * returned.
+     */
+    public ItemDTO enterInfo(String itemID) {
         sale.addItem(itemID);
         return sale.getCurrentItem();
     }
 
+    /**
+     * @return A SaleLogDTO object with the information of the sale is being
+     *         returned.
+     */
     public SaleLogDTO fetchSaleInfo() {
         return sale.fetchSaleInfo();
     }
 
-    public double presentChange(double payment){
+    /**
+     * The `presentChange` function records a sale, calculates change for a payment,
+     * updates the register,
+     * and returns the change amount.
+     * 
+     * @param payment represents the amount of money that a customer gives when
+     *                making a purchase.
+     * @return The method `presentChange` is returning the amount of change
+     *         calculated by the `sale.calculateChange(payment)` method.
+     */
+    public double presentChange(double payment) {
         inventorySystem.recordSale(this.saleLog);
         accountingSystem.recordSale(this.saleLog);
         double change = sale.calculateChange(payment);
