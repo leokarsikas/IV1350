@@ -14,7 +14,7 @@ public class Main {
         InventorySystem inventorySystem = new InventorySystem();
         Controller contr = new Controller();
         View view = new View(contr);
-        view.simulate();
 
+        view.simulate();
     }
 }

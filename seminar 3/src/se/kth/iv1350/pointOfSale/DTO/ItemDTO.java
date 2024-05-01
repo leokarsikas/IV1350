@@ -38,6 +38,10 @@ public class ItemDTO {
         return VAT;
     }
 
+    public int getQuantity(){
+        return quantity;
+    }
+
     public void setQuantity() {
         this.quantity++;
     }

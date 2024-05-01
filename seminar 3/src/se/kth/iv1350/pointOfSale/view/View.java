@@ -25,9 +25,10 @@ public class View {
         System.out.println("\nAdd 1 item with item id abc123:");
         ItemDTO currentItem = contr.enterInfo("abc123");
         SaleLogDTO salelog = contr.fetchSaleInfo();
+
         System.out.println("Item ID: "+currentItem.getID());
         System.out.println("Item name: "+currentItem.getName());
-        System.out.println("Item price: "+currentItem.getPrice()+" SEK");
+        System.out.println("Item price: "+doubleDecimal.format(currentItem.getPrice())+" SEK");
         System.out.println("Item VAT: "+noDecimal.format(currentItem.getVAT())+"%");
         System.out.println("Item description: "+currentItem.getDescription());
         System.out.println("\nTotal cost (incl VAT): "+doubleDecimal.format(salelog.getRunningTotal())+" SEK");
@@ -39,7 +40,7 @@ public class View {
         salelog = contr.fetchSaleInfo();
         System.out.println("Item ID: "+currentItem.getID());
         System.out.println("Item name: "+currentItem.getName());
-        System.out.println("Item price: "+currentItem.getPrice()+" SEK");
+        System.out.println("Item price: "+doubleDecimal.format(currentItem.getPrice())+" SEK");
         System.out.println("Item VAT: "+noDecimal.format(currentItem.getVAT())+"%");
         System.out.println("Item description: "+currentItem.getDescription());
         System.out.println("\nTotal cost (incl VAT): "+doubleDecimal.format(salelog.getRunningTotal())+" SEK");
@@ -51,7 +52,7 @@ public class View {
         salelog = contr.fetchSaleInfo();
         System.out.println("Item ID: "+currentItem.getID());
         System.out.println("Item name: "+currentItem.getName());
-        System.out.println("Item price: "+currentItem.getPrice()+" SEK");
+        System.out.println("Item price: "+doubleDecimal.format(currentItem.getPrice())+" SEK");
         System.out.println("Item VAT: "+noDecimal.format(currentItem.getVAT())+"%");
         System.out.println("Item description: "+currentItem.getDescription());
         System.out.println("\nTotal cost (incl VAT): "+doubleDecimal.format(salelog.getRunningTotal())+" SEK");

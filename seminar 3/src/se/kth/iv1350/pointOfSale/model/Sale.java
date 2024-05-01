@@ -18,7 +18,7 @@ public class Sale {
     public Sale(){
         this.saleLog = new SaleLogDTO();
         this.runningTotal = 0;
-        this.items = new ItemDTO[10]; //Fixlater
+        this.items = new ItemDTO[2]; //Fixlater
         this.time = LocalDateTime.now();
         this.currentItem = null;
         this.receipt = new Receipt();
@@ -34,12 +34,11 @@ public class Sale {
     }
 
     public double calculateChange(double payment){
+        double change = payment-saleLog.getRunningTotal();
+        saleLog.setAmountPaid(payment);
+        saleLog.setChange(change);
         receipt.printReceipt(this.saleLog);
-        return payment-saleLog.getRunningTotal();
-    }
-
-    public double getRunningTotal(){
-        return this.runningTotal;
+        return change;
     }
 
     public double endSale(){
@@ -59,7 +58,7 @@ public class Sale {
         }
         else {
             addNewItem(itemID);
-            currentItem = items[itemsCounter];
+            currentItem = items[itemsCounter++];
         }
         updateSale();
         return saleLog;
@@ -77,15 +76,16 @@ public class Sale {
     private void addNewItem(String itemID){
         //Wtf gör man här?
         ItemDTO item = new InventorySystem().itemLookup(itemID);
-        items[++itemsCounter] = item;
+        saleLog.setItemToList(item,itemsCounter);
+        items[itemsCounter] = item;
     }
 
     private void updateSale(){
-        double itemVAT = currentItem.getPrice()*(1+currentItem.getVAT()/100)-currentItem.getPrice();
-        this.runningTotal += currentItem.getPrice()+itemVAT;
-        System.out.println("Item VAT "+itemVAT);
+        double itemPrice = currentItem.getPrice();
+        double itemNumVAT = itemPrice-itemPrice/(1+ currentItem.getVAT()/100);
+        this.runningTotal += itemPrice;
         this.saleLog.setRunningTotal(this.runningTotal);
-        this.saleLog.setTotalVAT(itemVAT);
+        this.saleLog.setTotalVAT(itemNumVAT);
     }
 
 }

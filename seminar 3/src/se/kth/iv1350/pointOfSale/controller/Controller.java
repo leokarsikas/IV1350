@@ -9,14 +9,14 @@ import se.kth.iv1350.pointOfSale.model.Sale;
 
 public class Controller {
     private Sale sale;
-    private SaleLogDTO salelog;
+    private SaleLogDTO saleLog;
     private InventorySystem inventorySystem;
     private AccountingSystem accountingSystem;
     private Register register;
 
 
     public Controller(){
-        this.salelog = new SaleLogDTO();
+        this.saleLog = new SaleLogDTO();
         this.sale = new Sale();
         this.inventorySystem = new InventorySystem();
         this.accountingSystem = new AccountingSystem();
@@ -25,9 +25,9 @@ public class Controller {
 
     public void startSale(){
         this.sale = new Sale();
-        this.salelog = new SaleLogDTO();
-        salelog.setTimeOfSale();
-        System.out.println(salelog.getTimeOfSale());
+        this.saleLog = new SaleLogDTO();
+        saleLog.setTimeOfSale();
+        System.out.println(saleLog.getTimeOfSale());
     }
 
     public ItemDTO enterInfo(String itemID){
@@ -41,8 +41,8 @@ public class Controller {
     }
 
     public double presentChange(double payment){
-        inventorySystem.recordSale(this.salelog);
-        accountingSystem.recordSale(this.salelog);
+        inventorySystem.recordSale(this.saleLog);
+        accountingSystem.recordSale(this.saleLog);
         double change = sale.calculateChange(payment);
         register.updateAmountInRegister(payment, change);
         return change;
