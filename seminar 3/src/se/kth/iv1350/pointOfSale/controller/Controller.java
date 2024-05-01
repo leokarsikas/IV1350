@@ -27,7 +27,6 @@ public class Controller {
     }
 
     public ItemDTO enterInfo(String itemID){
-        System.out.println("Entering information");
         sale.addItem(itemID);
         return sale.getCurrentItem();
     }

@@ -21,15 +21,15 @@ public class Printer {
 
         for (int i = 0; i < saleLog.getLength(); i++) {
             ItemDTO item = saleLog.getItemFromList(i);
-            System.out.print(item.getName()+"          ");
+            System.out.print(item.getName()+"         ");
             System.out.print(item.getQuantity()+" x ");
-            System.out.print(item.getPrice()+"    ");
-            System.out.println(item.getPrice()* item.getQuantity()+" SEK");
+            System.out.print(doubleDecimal.format(item.getPrice())+"    ");
+            System.out.println(doubleDecimal.format(item.getPrice()*item.getQuantity())+" SEK");
         }
 
         System.out.println("\nTotal:                                "+doubleDecimal.format(saleLog.getRunningTotal())+" SEK");
         System.out.println("Total VAT:                            "+doubleDecimal.format(saleLog.getTotalVAT())+"  SEK\n");
-        System.out.println("Cash:                                 "+noDecimal.format(saleLog.getAmountPaid())+"   SEK");
+        System.out.println("Cash:                                 "+saleLog.getAmountPaid()+" SEK");
         System.out.println("Change:                               "+doubleDecimal.format(saleLog.getChange())+" SEK");
 
         System.out.println("------------End receipt------------\n");
