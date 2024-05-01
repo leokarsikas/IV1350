@@ -65,6 +65,7 @@ public class View {
         System.out.println("Total VAT: "+doubleDecimal.format(salelog.getTotalVAT())+" SEK");
 
         System.out.println("\nEnd sale! ");
+        contr.endSale();
         System.out.println("Total cost (incl VAT): "+doubleDecimal.format(salelog.getRunningTotal())+" SEK");
 
         System.out.println("Customer pays 100:00 SEK");

@@ -55,20 +55,28 @@ public class Sale {
         return new ItemDTO(items[currentItemIndex]);
     }
 
-    public double calculateChange(double payment){
-        this.amountPaid = payment;
-        this.change = payment-this.runningTotal;
+    public void printReceipt(){
         receipt.printReceipt(new SaleLogDTO(
                 this.items,
                 this.runningTotal,
                 this.totalVAT,
                 this.time,
                 this.amountPaid,
-                this.change));
+                this.change)
+        );
+
+    }
+
+    public double calculateChange(double payment){
+        this.amountPaid = payment;
+        this.change = payment-this.runningTotal;
         return change;
     }
 
-    public double endSale(){
+    /*
+     * 
+     */
+    public double getRunningTotal(){
         return this.runningTotal;
     }
 

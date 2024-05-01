@@ -1,4 +1,4 @@
-package se.kth.iv1350.pointOfSale.startup;
+package test.startup;
 import org.junit.jupiter.api.Test;
 
 

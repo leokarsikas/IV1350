@@ -11,4 +11,8 @@ public class Register {
         amountInRegister += payment-change;
     }
 
+    public double getAmount(){ //For testing
+        return this.amountInRegister;
+    }
+
 }

@@ -9,7 +9,6 @@ import se.kth.iv1350.pointOfSale.model.Sale;
 
 public class Controller {
     private Sale sale;
-    private SaleLogDTO saleLog;
     private InventorySystem inventorySystem;
     private AccountingSystem accountingSystem;
     private Register register;
@@ -47,6 +46,10 @@ public class Controller {
         return sale.fetchSaleInfo();
     }
 
+    public double endSale(){
+        return sale.getRunningTotal();
+    }
+
     /**
      * The `presentChange` function records a sale, calculates change for a payment,
      * updates the register,
@@ -58,10 +61,11 @@ public class Controller {
      *         calculated by the `sale.calculateChange(payment)` method.
      */
     public double presentChange(double payment) {
-        inventorySystem.recordSale(this.saleLog);
-        accountingSystem.recordSale(this.saleLog);
         double change = sale.calculateChange(payment);
+        inventorySystem.recordSale(sale.fetchSaleInfo());
+        accountingSystem.recordSale(sale.fetchSaleInfo());
         register.updateAmountInRegister(payment, change);
+        sale.printReceipt();
         return change;
     }
 }
