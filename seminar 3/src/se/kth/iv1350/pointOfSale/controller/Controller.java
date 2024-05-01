@@ -16,7 +16,6 @@ public class Controller {
 
 
     public Controller(){
-        this.saleLog = new SaleLogDTO();
         this.sale = new Sale();
         this.inventorySystem = new InventorySystem();
         this.accountingSystem = new AccountingSystem();
@@ -25,9 +24,6 @@ public class Controller {
 
     public void startSale(){
         this.sale = new Sale();
-        this.saleLog = new SaleLogDTO();
-        saleLog.setTimeOfSale();
-        System.out.println(saleLog.getTimeOfSale());
     }
 
     public ItemDTO enterInfo(String itemID){

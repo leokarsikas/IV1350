@@ -1,5 +1,7 @@
 package se.kth.iv1350.pointOfSale.DTO;
 
+import se.kth.iv1350.pointOfSale.model.Item;
+
 public class ItemDTO {
     //private ItemID itemID;
     private String ID;
@@ -16,6 +18,15 @@ public class ItemDTO {
         this.description = description;
         this.quantity = quantity;
         this.VAT = VAT;
+    }
+
+    public ItemDTO(Item item){
+        this.ID = item.ID;
+        this.name = item.name;
+        this.price = item.price;
+        this.description = item.description;
+        this.quantity = item.quantity;
+        this.VAT = item.VAT;
     }
 
     public String getID() {
@@ -42,7 +53,4 @@ public class ItemDTO {
         return quantity;
     }
 
-    public void setQuantity() {
-        this.quantity++;
-    }
 }

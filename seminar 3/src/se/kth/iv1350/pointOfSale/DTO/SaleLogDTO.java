@@ -1,23 +1,25 @@
 package se.kth.iv1350.pointOfSale.DTO;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import se.kth.iv1350.pointOfSale.model.Item;
+import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 
 //After creation: READ ONLY
 public class SaleLogDTO {
     private double runningTotal;
     private double totalVAT;
-    private LocalTime time;
+    private LocalDateTime time;
     private double amountPaid;
     private double change;
-    private ItemDTO[] items;
+    private Item[] items;
 
-    public SaleLogDTO(){
-        this.items = new ItemDTO[2];
-        this.runningTotal = 0;
-        this.totalVAT = 0;
-        this.time = null;
-        this.amountPaid = 0;
-        this.change = 0;
+    public SaleLogDTO(Item[] items, double runningTotal, double totalVAT, LocalDateTime time, double amountPaid, double change){
+        this.items = items;
+        this.runningTotal = runningTotal;
+        this.totalVAT = totalVAT;
+        this.time = time;
+        this.amountPaid = amountPaid;
+        this.change = change;
     }
 
     public double getRunningTotal() {
@@ -52,16 +54,12 @@ public class SaleLogDTO {
         this.change = change;
     }
 
-    public LocalTime getTimeOfSale(){ return this.time; }
-
-    public void setTimeOfSale() {
-        this.time = java.time.LocalTime.now();
-    }
+    public LocalDateTime getTimeOfSale(){ return this.time; }
 
     public int getLength(){ return this.items.length; }
 
-    public ItemDTO getItemFromList(int index) { return items[index]; }
+    public ItemDTO getItemFromList(int index) { return new ItemDTO(items[index]); }
 
-    public void setItemToList(ItemDTO item, int index) { items[index] = item; }
+    public void setItemToList(Item item, int index) { items[index] = item; }
 
 }
