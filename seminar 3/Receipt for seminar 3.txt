@@ -20,12 +20,12 @@ Item description: Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten fr
 Total cost (incl VAT): 59.80 SEK
 Total VAT: 3.38 SEK
 
-Add 1 item with item id abc123:
-Item ID: abc123
-Item name: BigWheel Oatmeal
-Item price: 29.90 SEK
+Add 1 item with item id def456:
+Item ID: def456
+Item name: YoGoGo Blueberry
+Item price: 14.90 SEK
 Item VAT: 6%
-Item description: Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free
+Item description: YouGoGo Blueberry 240g, low sugar yoghurt, blueberry flavour
 
 Total cost (incl VAT): 74.70 SEK
 Total VAT: 4.23 SEK
@@ -46,7 +46,7 @@ Total VAT:        4.23 SEK
 --------ACCOUNTING INFORMATION END-------
 
 ------------Begin receipt------------
-Time of sale: 02/05/24 15:02
+Time of sale: 02/05/24 20:41
 
 BigWheel Oatmeal         2 x 29.90    59.80 SEK
 YoGoGo Blueberry         1 x 14.90    14.90 SEK
