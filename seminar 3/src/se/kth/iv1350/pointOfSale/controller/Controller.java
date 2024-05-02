@@ -44,8 +44,7 @@ public class Controller {
      * returned.
      */
     public ItemDTO enterInfo(String itemID) {
-        sale.addItem(itemID);
-        return sale.getCurrentItem();
+        return sale.addItem(itemID);
     }
 
     /**

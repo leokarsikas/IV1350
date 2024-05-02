@@ -23,7 +23,7 @@ public class SaleTest {
         sale = new Sale(inventorySystem);
     }
 
-    /*
+    /*abc123
     Test for checking the running total is correct 
     */
     @Test

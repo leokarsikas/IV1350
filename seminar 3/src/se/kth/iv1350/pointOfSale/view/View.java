@@ -58,7 +58,7 @@ public class View {
         System.out.println("Total VAT: "+doubleDecimal.format(salelog.getTotalVAT())+" SEK");
 
         //Add third item
-        System.out.println("\nAdd 1 item with item id abc123:");
+        System.out.println("\nAdd 1 item with item id def456:");
         currentItem = contr.enterInfo("def456");
         salelog = contr.fetchSaleInfo();
         System.out.println("Item ID: "+currentItem.getID());

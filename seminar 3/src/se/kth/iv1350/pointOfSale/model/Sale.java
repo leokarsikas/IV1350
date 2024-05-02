@@ -15,7 +15,6 @@ public class Sale {
     private double runningTotal;
     private Item[] items;
     private int itemsCounter = 0;
-    private int currentItemIndex;
     private LocalDateTime time;
     private Receipt receipt;
     private double totalVAT;
@@ -31,7 +30,6 @@ public class Sale {
         this.runningTotal = 0;
         this.items = new Item[2]; //Arbitrary size for now
         setTimeOfSale();
-        this.currentItemIndex = 0;
         this.receipt = new Receipt();
         this.inventorySystem = invSyst;
     }
@@ -49,16 +47,6 @@ public class Sale {
                 this.time,
                 this.amountPaid,
                 this.change);
-    }
-
-    /**
-     * getCurrentItem transforms the most recently added
-     * item (to the sale) into a DTO ready for transport.
-     * @return an ItemDTO with the most recently added
-     * item(to the sale).
-     */
-    public ItemDTO getCurrentItem() {
-        return new ItemDTO(items[currentItemIndex]);
     }
 
     /**
@@ -121,12 +109,13 @@ public class Sale {
 
         item = new ItemDTO(items[currentItemIndex]);
         updateSale(item);
+
         return item;
     }
     
     private int isItemAlreadyInSale(String itemID){
         for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getID() == itemID) {
+            if (items[i] != null && items[i].getID().equals(itemID)) {
                 return i;
             }
         }
