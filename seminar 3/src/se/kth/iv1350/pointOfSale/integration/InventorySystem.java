@@ -3,17 +3,33 @@ package se.kth.iv1350.pointOfSale.integration;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 
+/**
+ * The InventorySystem class represents a mockup of a system for managing inventory and recording sales.
+ * It provides methods for recording sales and looking up items in the inventory database.
+ */
 public class InventorySystem {
 
+/** empty constructor */
     public InventorySystem() {
 
     }
 
+    /**
+     * Records a sale and validates its functionality by printing out a statement. 
+     * @param saleLog The SaleLogDTO object containing information about the sale.
+     */
+
     public void recordSale(SaleLogDTO saleLog){
         //"Record in Database"
-        System.out.println("Recorded sale in Inventory System:\n Reduced quantity of ");
+        System.out.println("Recorded sale in Inventory System:\n ");
     }
 
+
+/**
+ * The 'itemLookup' does a lookup in the inventory system based on the itemID
+ * @param itemID represents the ID of the item
+ * @return a new instance of an ItemDTO based on the specified itemID.
+ */
     public ItemDTO itemLookup(String itemID){
         //"Inventory Database"
         if(itemID == "abc123"){
@@ -23,7 +39,5 @@ public class InventorySystem {
             return new ItemDTO(itemID,"YoGoGo Blueberry",14.90,"YouGoGo Blueberry 240g, low sugar yoghurt, blueberry flavour", 1, 6);
         }
     }
-
-    //"Database
 
 }

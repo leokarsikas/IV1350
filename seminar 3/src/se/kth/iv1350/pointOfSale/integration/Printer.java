@@ -5,15 +5,25 @@ import java.time.format.DateTimeFormatter; //Just for nice output
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 
+/**
+ * Represents a printer that prints the receipt of a sale.
+ */
 public class Printer {
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm"); //Just for nice output
 
+    /**
+     * Creates a new instance of a printer.
+     */
     public Printer() {
 
     }
 
+    /**
+     * Prints the receipt of a sale.
+     * @param saleLog The sale log that contains the information to be printed.
+     */
     public void printReceipt(SaleLogDTO saleLog){
         System.out.println("------------Begin receipt------------");
 

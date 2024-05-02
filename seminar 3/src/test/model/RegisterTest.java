@@ -5,14 +5,22 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import se.kth.iv1350.pointOfSale.model.Register;
 
+/**
+ * Test the Register class in the model
+ */
 public class RegisterTest {
     private Register register;
-
+    /*
+    Sets up a new register before each test
+     */
     @BeforeEach
     public void setUp() {
         register = new Register();
     }
 
+    /*
+    Test the update of amount in the Regiser class
+    */
     @Test
     public void testUpdateAmountInRegister() {
 

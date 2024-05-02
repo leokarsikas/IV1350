@@ -7,30 +7,40 @@ import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 import se.kth.iv1350.pointOfSale.model.Register;
 import se.kth.iv1350.pointOfSale.model.Sale;
 
+/**
+ * The controller of the point of sale program. The controller
+ * connects the user interface of the cashier (the view) to the
+ * model and integration packages.
+ */
 public class Controller {
     private Sale sale;
     private InventorySystem inventorySystem;
     private AccountingSystem accountingSystem;
     private Register register;
 
+    /**
+     * The constructor of the controller. Creates a new inventory system, 
+     * accounting system and register.
+     */
     public Controller() {
         this.inventorySystem = new InventorySystem();
         this.accountingSystem = new AccountingSystem();
         this.register = new Register();
     }
 
-    // startSale initializes a new Sale object with a reference to the
-    // inventorySystem.
+    /**
+     * startSale initializes a new Sale object with a reference to the inventorySystem
+     */
     public void startSale() {
         this.sale = new Sale(this.inventorySystem);
     }
 
     /**
-     * enterInfofunction adds an item to the sale and returns the information of
+     * enterInfo adds an item to the sale and returns the information of
      * that item.
      * @param itemID parameter is a unique identifier for the item being added to
      * the sale.
-     * @return An ItemDTO object containing the most recently added item is
+     * @return an ItemDTO containing the most recently added item is
      * returned.
      */
     public ItemDTO enterInfo(String itemID) {
@@ -39,26 +49,30 @@ public class Controller {
     }
 
     /**
-     * @return A SaleLogDTO object with the information of the sale is being
-     *         returned.
+     * fetchSaleInfo calls sale to get all current sale information.
+     * @return a SaleLogDTO with the information of the sale is being returned.
      */
     public SaleLogDTO fetchSaleInfo() {
         return sale.fetchSaleInfo();
     }
 
+    /**
+     * endSale calls sale to get the total price of the sale.
+     * @return a double, the amount of the total price of the sale.
+     */
     public double endSale(){
         return sale.getRunningTotal();
     }
 
     /**
-     * The `presentChange` function records a sale, calculates change for a payment,
-     * updates the register,
-     * and returns the change amount.
-     * 
-     * @param payment represents the amount of money that a customer gives when
-     *                making a purchase.
-     * @return The method `presentChange` is returning the amount of change
-     *         calculated by the `sale.calculateChange(payment)` method.
+     * presentChange calls sale in order to calculate the change based on the 
+     * payment and the running total. It then sends all current sale info to the
+     * inventory system and accounting system to be recorded externally. It then
+     * updates the amount of cash in the register based on the payment and change.
+     * It then contacts the sale to print the receipt. Then it returns the change
+     * to the view.
+     * @param payment is an amount of money payed by the customer.
+     * @return a double, the amount to give back to the customer
      */
     public double presentChange(double payment) {
         double change = sale.calculateChange(payment);

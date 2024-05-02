@@ -22,44 +22,48 @@ public class SaleLogDTO {
         this.change = change;
     }
 
+    /**
+     * Get the running total of the sale
+     */
     public double getRunningTotal() {
         return this.runningTotal;
     }
 
-    public void setRunningTotal(double runningTotal) {
-        this.runningTotal = runningTotal;
-    }
-
+    /**
+     * Get the total VAT of the sale
+     */
     public double getTotalVAT() {
         return this.totalVAT;
     }
 
-    public void setTotalVAT(double totalVAT) {
-        this.totalVAT += totalVAT;
-    }
-
+    /**
+     * Get the amount paid by the customer
+     */
     public double getAmountPaid() {
         return this.amountPaid;
     }
-
-    public void setAmountPaid(double amountPaid) {
-        this.amountPaid = amountPaid;
-    }
-
+    /**
+     * Get the change to be returned to the customer
+     */
     public double getChange() {
         return this.change;
     }
-
-    public void setChange(double change) {
-        this.change = change;
-    }
-
+    /**
+     * Gets the time of the sale
+     */
     public LocalDateTime getTimeOfSale(){ return this.time; }
 
+    /**
+     * length of the list of items
+     */
     public int getLength(){ return this.items.length; }
 
+    /**
+     * Get an ItemDTO from the items list at the specified index
+     * @param index the index of the item in the list
+     * @return an ItemDTO of the item at the specified index
+     */
     public ItemDTO getItemFromList(int index) { return new ItemDTO(items[index]); }
 
-    public void setItemToList(Item item, int index) { items[index] = item; }
 
 }

@@ -6,15 +6,26 @@ import static org.junit.jupiter.api.Assertions.*;
 import se.kth.iv1350.pointOfSale.model.Sale;
 import se.kth.iv1350.pointOfSale.integration.*;
 
+
+/**
+ * Test the Sale class in the model package.
+ */
 public class SaleTest {
     private Sale sale;
 
+
+    /*
+    Sets up an sale object before eact test iteration
+     */
     @BeforeEach
     public void setUp() {
         InventorySystem inventorySystem = new InventorySystem();
         sale = new Sale(inventorySystem);
     }
 
+    /*
+    Test for checking the running total is correct 
+    */
     @Test
     public void testRunningTotal() {
         // Add some items
@@ -26,14 +37,16 @@ public class SaleTest {
         assertEquals(74.7, sale.getRunningTotal(), "Running total is not correct");
     }
 
-
+    /*
+    Tests if the change amount i correct 
+    */
     @Test
     public void calculateChange(){
         sale.addItem("abc123");
         sale.addItem("abc123");
         sale.addItem("def456");
 
-        assertEquals(25.3,Math.round(sale.calculateChange(100)), "Change amount is not correct");
+        assertEquals(25,Math.round(sale.calculateChange(100)), "Change amount is not correct");
     }
     
 }

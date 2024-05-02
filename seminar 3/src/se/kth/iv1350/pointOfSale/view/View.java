@@ -5,26 +5,31 @@ import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.controller.Controller;
 import java.text.DecimalFormat; //Just for nice output
 
-/*
-    Placeholder View
+/**
+ * The View class is the user interface interacted with
+ * by the cashier at the store. It simulates basic flow 
+ * described in Seminar 1 and prints everything returned
+ * by the controller.
  */
 public class View {
     private Controller contr;
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
 
-    /*
+    /**
      * View constructor, using the controller created in main.
+     * @param contr is the controller.
      */
     public View(Controller contr) {
         this.contr = contr;
     }
 
-    /*
-     * Sumulates the cashier performing all its actions in the flow described in Seminar 1.
+    /**
+     * Simulates the cashier performing all its actions in the flow described 
+     * in Seminar 1.
      */
     public void simulate(){
-        System.out.println("Start sale! ");
+        System.out.println("\nStart sale! ");
         contr.startSale();
 
         //Add first item
