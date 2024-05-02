@@ -20,7 +20,6 @@ public class InventorySystem {
      */
 
     public void recordSale(SaleLogDTO saleLog){
-        //"Record in Database"
         System.out.println("Recorded sale in Inventory System:\n ");
     }
 
@@ -31,7 +30,6 @@ public class InventorySystem {
  * @return a new instance of an ItemDTO based on the specified itemID.
  */
     public ItemDTO itemLookup(String itemID){
-        //"Inventory Database"
         if(itemID == "abc123"){
             return new ItemDTO(itemID,"BigWheel Oatmeal",29.90,"Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free", 1, 6);
         }
