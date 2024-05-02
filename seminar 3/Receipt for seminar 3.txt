@@ -1,0 +1,61 @@
+Start sale! 
+
+Add 1 item with item id abc123:
+Item ID: abc123
+Item name: BigWheel Oatmeal
+Item price: 29.90 SEK
+Item VAT: 6%
+Item description: Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free
+
+Total cost (incl VAT): 29.90 SEK
+Total VAT: 1.69 SEK
+
+Add 1 item with item id abc123:
+Item ID: abc123
+Item name: BigWheel Oatmeal
+Item price: 29.90 SEK
+Item VAT: 6%
+Item description: Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free
+
+Total cost (incl VAT): 59.80 SEK
+Total VAT: 3.38 SEK
+
+Add 1 item with item id abc123:
+Item ID: abc123
+Item name: BigWheel Oatmeal
+Item price: 29.90 SEK
+Item VAT: 6%
+Item description: Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free
+
+Total cost (incl VAT): 74.70 SEK
+Total VAT: 4.23 SEK
+
+End sale! 
+Total cost (incl VAT): 74.70 SEK
+Customer pays 100:00 SEK
+Recorded sale in Inventory System:
+ 
+
+--------ACCOUNTING INFORMATION BEGIN-------
+
+Amount paid:     100.0 SEK
+Change:          25.30 SEK
+Running Total:   74.70 SEK
+Total VAT:        4.23 SEK
+
+--------ACCOUNTING INFORMATION END-------
+
+------------Begin receipt------------
+Time of sale: 02/05/24 15:02
+
+BigWheel Oatmeal         2 x 29.90    59.80 SEK
+YoGoGo Blueberry         1 x 14.90    14.90 SEK
+
+Total:                                74.70 SEK
+Total VAT:                            4.23  SEK
+
+Cash:                                 100.0 SEK
+Change:                               25.30 SEK
+------------End receipt------------
+
+Change to give the customer: 25.30 SEK
