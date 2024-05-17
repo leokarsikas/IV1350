@@ -2,6 +2,7 @@ package se.kth.iv1350.pointOfSale.controller;
 
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
+import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 import se.kth.iv1350.pointOfSale.model.Register;
@@ -47,10 +48,10 @@ public class Controller {
         try {
             return sale.addItem(itemID);
         }
-        catch (Exception e) {
+        catch (UnrecognisedItemException e) {
             e.printStackTrace();
+            throw new UnrecognisedItemException(itemID);
         }
-        return null;
     }
 
     /**

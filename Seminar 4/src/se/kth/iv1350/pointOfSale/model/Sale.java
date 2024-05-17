@@ -2,6 +2,7 @@ package se.kth.iv1350.pointOfSale.model;
 
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
+import se.kth.iv1350.pointOfSale.exceptions.InventorySystemException;
 import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 
@@ -109,7 +110,7 @@ public class Sale {
             try {
                 addNewItem(itemID);
             }
-            catch (UnrecognisedItemException e) {
+            catch (InventorySystemException e) {
                 throw e;
             }
         }
@@ -129,11 +130,8 @@ public class Sale {
     }
 
     private void addNewItem(String itemID) throws UnrecognisedItemException{
-
             ItemDTO item = inventorySystem.itemLookup(itemID);
             items[itemsCounter++] = new Item(item);
-
-
     }
 
     private void updateSale(ItemDTO item){

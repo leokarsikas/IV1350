@@ -52,11 +52,9 @@ public class View {
             System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
         }
         catch (UnrecognisedItemException e){
-            System.out.println(e.getMessage());
+            System.err.println(e);
         }
-        catch (InventorySystemException e){
-            System.out.println(e.getMessage());
-        }
+
         //Add second item
         try {
             System.out.println("\nAdd 1 item with item id abc123:");
@@ -73,9 +71,7 @@ public class View {
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
-        catch (InventorySystemException e){
-            System.out.println(e.getMessage());
-        }
+
 
         //Add third item
         try {
@@ -93,9 +89,7 @@ public class View {
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
-        catch (InventorySystemException e){
-            System.out.println(e.getMessage());
-        }
+
 
         try {
             System.out.println("\nAdd 1 item with item id undefined:");
@@ -107,9 +101,7 @@ public class View {
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
-        catch (InventorySystemException e){
-            System.out.println(e.getMessage());
-        }
+
 
         try {
             currentItem = contr.enterInfo("InventoryDatabaseFailure");
@@ -117,9 +109,7 @@ public class View {
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
-        catch (InventorySystemException e){
-            System.out.println(e.getMessage());
-        }
+
 
         System.out.println("\nEnd sale! ");
         contr.endSale();
