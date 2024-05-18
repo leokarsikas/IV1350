@@ -39,9 +39,10 @@ public class InventorySystem {
             } else if (itemID == "undefined") {
                 throw new UnrecognisedItemException(itemID);
             }
-            else if (true){
+            else if (itemID == "serverNotResponding"){
                 throw new InventorySystemException("Database not responding.");
             }
+            return null;
     }
 
 }

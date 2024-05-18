@@ -44,14 +44,8 @@ public class Controller {
      * @return an ItemDTO containing the most recently added item is
      * returned.
      */
-    public ItemDTO enterInfo(String itemID) {
-        try {
-            return sale.addItem(itemID);
-        }
-        catch (UnrecognisedItemException e) {
-            e.printStackTrace();
-            throw new UnrecognisedItemException(itemID);
-        }
+    public ItemDTO enterInfo(String itemID) throws UnrecognisedItemException {
+        return sale.addItem(itemID);
     }
 
     /**
