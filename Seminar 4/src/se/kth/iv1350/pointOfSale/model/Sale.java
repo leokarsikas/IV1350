@@ -100,7 +100,7 @@ public class Sale {
      * @return ItemDTO that represents the added or updated item.     
      * 
      * */
-    public ItemDTO addItem(String itemID) throws UnrecognisedItemException {
+    public ItemDTO addItem(String itemID) throws UnrecognisedItemException, InventorySystemException {
         ItemDTO item;
         int currentItemIndex = isItemAlreadyInSale(itemID);
 
@@ -129,7 +129,7 @@ public class Sale {
         return itemsCounter;
     }
 
-    private void addNewItem(String itemID) throws UnrecognisedItemException{
+    private void addNewItem(String itemID) throws UnrecognisedItemException, InventorySystemException{
             ItemDTO item = inventorySystem.itemLookup(itemID);
             items[itemsCounter++] = new Item(item);
     }

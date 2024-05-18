@@ -12,7 +12,6 @@ public class FileLog {
             logContent = new PrintWriter(new FileWriter("seminar4.txt"));
         }
         catch(IOException e){
-            e.printStackTrace();
         }
     }
 

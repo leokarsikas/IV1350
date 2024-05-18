@@ -1,5 +1,6 @@
 package se.kth.iv1350.pointOfSale.view;
 
+import se.kth.iv1350.pointOfSale.FileLog;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.controller.Controller;
@@ -34,26 +35,27 @@ public class View {
     public void simulate(){
         System.out.println("\nStart sale! ");
         contr.startSale();
-        ItemDTO currentItem;
-        SaleLogDTO salelog;
+        ItemDTO currentItem = null;
+        SaleLogDTO salelog = null;
 
         //Add first item
         try {
             System.out.println("\nAdd 1 item with item id abc123:");
             currentItem = contr.enterInfo("abc123");
             salelog = contr.fetchSaleInfo();
-
             System.out.println("Item ID: " + currentItem.getID());
             System.out.println("Item name: " + currentItem.getName());
             System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
             System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
             System.out.println("Item description: " + currentItem.getDescription());
-            System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
         }
         catch (UnrecognisedItemException e){
             System.err.println(e);
         }
+        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        System.out.println("________________________________________________________");
+
 
         //Add second item
         try {
@@ -65,12 +67,15 @@ public class View {
             System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
             System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
             System.out.println("Item description: " + currentItem.getDescription());
-            System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
         }
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
+
+        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+
+        System.out.println("________________________________________________________");
 
 
         //Add third item
@@ -83,32 +88,56 @@ public class View {
             System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
             System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
             System.out.println("Item description: " + currentItem.getDescription());
-            System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
         }
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
+        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        System.out.println("________________________________________________________");
 
-
+        //Add third item
+        System.out.println("\nAdd 1 item with item id undefined:");
         try {
-            System.out.println("\nAdd 1 item with item id undefined:");
             currentItem = contr.enterInfo("undefined");
             salelog = contr.fetchSaleInfo();
-            System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+            System.out.println("Item ID: " + currentItem.getID());
+            System.out.println("Item name: " + currentItem.getName());
+            System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+            System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+            System.out.println("Item description: " + currentItem.getDescription());
         }
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
+        //catch (InventorySystemException e){
+        //    System.out.println(e.getMessage());
+        //}
+        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        System.out.println("________________________________________________________");
 
 
+        System.out.println("\nAdd 1 item with item id serverNotResponding:");
         try {
-            currentItem = contr.enterInfo("InventoryDatabaseFailure");
+            currentItem = contr.enterInfo("serverNotResponding");
+            salelog = contr.fetchSaleInfo();
+            System.out.println("Item ID: " + currentItem.getID());
+            System.out.println("Item name: " + currentItem.getName());
+            System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+            System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+            System.out.println("Item description: " + currentItem.getDescription());
         }
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
         }
+        //catch (InventorySystemException e){
+        //    System.out.println(e.getMessage());
+        //}
+        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        System.out.println("________________________________________________________");
+
 
 
         System.out.println("\nEnd sale! ");
