@@ -19,6 +19,7 @@ public class View {
     private Controller contr;
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
+    private FileLog fileLog = new FileLog();
 
     /**
      * View constructor, using the controller created in main.
@@ -109,6 +110,7 @@ public class View {
         }
         catch (UnrecognisedItemException e){
             System.out.println(e.getMessage());
+            fileLog.log(e.getMessage());
         }
         //catch (InventorySystemException e){
         //    System.out.println(e.getMessage());

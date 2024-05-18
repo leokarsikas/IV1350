@@ -1,7 +1,9 @@
 package se.kth.iv1350.pointOfSale.controller;
 
+import se.kth.iv1350.pointOfSale.FileLog;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
+import se.kth.iv1350.pointOfSale.exceptions.InventorySystemException;
 import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
@@ -18,6 +20,7 @@ public class Controller {
     private InventorySystem inventorySystem;
     private AccountingSystem accountingSystem;
     private Register register;
+    private FileLog fileLog = new FileLog();
 
     /**
      * The constructor of the controller. Creates a new inventory system, 
@@ -44,8 +47,15 @@ public class Controller {
      * @return an ItemDTO containing the most recently added item is
      * returned.
      */
-    public ItemDTO enterInfo(String itemID) throws UnrecognisedItemException {
-        return sale.addItem(itemID);
+    public ItemDTO enterInfo(String itemID) throws UnrecognisedItemException, InventorySystemException {
+        try{
+            return sale.addItem(itemID);
+        } 
+        catch (InventorySystemException e) {
+            //e.printStackTrace();
+            fileLog.log(e.getMessage());
+            throw e;
+        }
     }
 
     /**

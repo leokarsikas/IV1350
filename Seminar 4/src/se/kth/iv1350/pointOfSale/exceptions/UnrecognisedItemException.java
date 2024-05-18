@@ -7,6 +7,6 @@ package se.kth.iv1350.pointOfSale.exceptions;
  */
 public class UnrecognisedItemException extends Exception {
     public UnrecognisedItemException(String itemID) {
-        super("Item identifier " + itemID + " does not exist in inventory.");
+        super("Item identifier \"" + itemID + "\" does not exist in inventory.");
     }
 }

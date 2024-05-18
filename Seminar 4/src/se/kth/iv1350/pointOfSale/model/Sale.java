@@ -23,6 +23,7 @@ public class Sale {
     private double amountPaid;
     private double change;
     private InventorySystem inventorySystem;
+    private RevenueObserver[] revenueObservers;
 
 /**
  * Constructor that creates a new instance of a Sale
@@ -34,6 +35,7 @@ public class Sale {
         setTimeOfSale();
         this.receipt = new Receipt();
         this.inventorySystem = invSyst;
+        this.revenueObservers = new RevenueObserver[2]; //Arbitrary size for now
     }
 
     /**
@@ -76,7 +78,14 @@ public class Sale {
     public double calculateChange(double payment){
         this.amountPaid = payment;
         this.change = payment-this.runningTotal;
+        notifyRevenueObserver();
         return change;
+    }
+
+    private void notifyRevenueObserver(){
+        for(int i = 0; i < revenueObservers.length; i++){
+            revenueObservers[i].updateRevenue(getRunningTotal());
+        }
     }
 
     /**
@@ -107,12 +116,7 @@ public class Sale {
         if (currentItemIndex < itemsCounter)
             items[currentItemIndex].increaseQuantity();
         else {
-            try {
-                addNewItem(itemID);
-            }
-            catch (InventorySystemException e) {
-                throw e;
-            }
+            addNewItem(itemID);
         }
         item = new ItemDTO(items[currentItemIndex]);
         updateSale(item);
