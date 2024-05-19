@@ -59,7 +59,6 @@ public class Controller {
             return sale.addItem(itemID);
         } 
         catch (DatabaseConnectionException e) {
-            //e.printStackTrace();
             messageCreator.log(e.getMessage());
             throw e;
         }
