@@ -7,9 +7,9 @@ import java.io.PrintWriter;
 public class FileLogger implements MessageCreator{
     private PrintWriter printer;
 
-    public FileLogger() {
+    public FileLogger(String filename) {
         try {
-            printer = new PrintWriter(new FileWriter("seminar4.txt",true));
+            printer = new PrintWriter(new FileWriter(filename,true));
         }
         catch(IOException exception){
             System.out.println("Could not log error to file, "+exception.getMessage());

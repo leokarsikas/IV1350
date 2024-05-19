@@ -20,7 +20,7 @@ public class Main {
         Printer printer = new Printer();
         AccountingSystem accountingSystem= new AccountingSystem();
         InventorySystem inventorySystem = new InventorySystem();
-        Controller contr = new Controller(new SystemOutLogger());
+        Controller contr = new Controller(new FileLogger("Errorlog.txt"));
         View view = new View(contr, new SystemOutLogger());
 
         view.simulate();

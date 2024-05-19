@@ -84,7 +84,7 @@ public class Sale {
 
     private void notifyRevenueObserver(){
         for(int i = 0; i < revenueObservers.length; i++){
-            revenueObservers[i].updateRevenue(getRunningTotal());
+            revenueObservers[i].updateRevenue(this.runningTotal);
         }
     }
 
