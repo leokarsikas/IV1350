@@ -35,7 +35,7 @@ public class Sale {
         setTimeOfSale();
         this.receipt = new Receipt();
         this.inventorySystem = invSyst;
-        this.revenueObservers = new RevenueObserver[2]; //Arbitrary size for now
+        this.revenueObservers = new RevenueObserver[10]; //Arbitrary size for now
     }
 
     /**
@@ -84,7 +84,8 @@ public class Sale {
 
     private void notifyRevenueObserver(){
         for(int i = 0; i < revenueObservers.length; i++){
-            revenueObservers[i].updateRevenue(this.runningTotal);
+            if(revenueObservers[i] != null)
+                revenueObservers[i].updateRevenue(this.runningTotal);
         }
     }
 
@@ -95,6 +96,10 @@ public class Sale {
                 break;
             }
         }
+    }
+
+    public void addAllObservers(RevenueObserver[] revenueObservers){
+        this.revenueObservers = revenueObservers;
     }
 
     /**

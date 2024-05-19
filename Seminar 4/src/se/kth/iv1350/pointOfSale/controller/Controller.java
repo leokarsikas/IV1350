@@ -25,6 +25,8 @@ public class Controller {
     private AccountingSystem accountingSystem;
     private Register register;
     private MessageCreator messageCreator;
+    private RevenueObserver[] revenueObservers;
+
 
     /**
      * The constructor of the controller. Creates a new inventory system, 
@@ -35,6 +37,7 @@ public class Controller {
         this.accountingSystem = new AccountingSystem();
         this.register = new Register();
         this.messageCreator = messageCreator;
+        this.revenueObservers = new RevenueObserver[10]; //Arbitrary size for now
     }
 
     /**
@@ -42,8 +45,7 @@ public class Controller {
      */
     public void startSale() {
         this.sale = new Sale(this.inventorySystem);
-        this.sale.addRevenueObserver(new TotalRevenueFileOutput());
-        this.sale.addRevenueObserver(new TotalRevenueView());
+        this.sale.addAllObservers(this.revenueObservers);
     }
 
     /**
@@ -99,17 +101,14 @@ public class Controller {
         sale.printReceipt();
         return change;
     }
-/*
-    public void addRevenueObserver(RevenueObserver revObserver){
-        for (int i = 0; i < revenueObservers.length; i++){
-            if (revenueObservers[i] == null)
-                revenueObservers.add(revObserver);
-                break;
-        }
-    }
-*/
 
     public void addRevenueObserver(RevenueObserver revObserver){
-        sale.addRevenueObserver(revObserver);
+        for (int i = 0; i < revenueObservers.length; i++){
+            if (revenueObservers[i] == null){
+                revenueObservers[i] = revObserver;
+                break;
+            }
+        }
     }
+
 }
