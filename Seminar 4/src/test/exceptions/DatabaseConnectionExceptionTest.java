@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import se.kth.iv1350.pointOfSale.exceptions.DatabaseConnectionException;
 
+/**
+ * The class DatabaseConnectionExceptionTest contains unit tests for the DatabaseConnectionException
+ * class. The tests are testing the constructor of the class and the exception type. 
+ */
 public class DatabaseConnectionExceptionTest {
 
     @Test
