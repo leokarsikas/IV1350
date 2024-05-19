@@ -2,9 +2,9 @@ package se.kth.iv1350.pointOfSale.model;
 
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
-import se.kth.iv1350.pointOfSale.exceptions.DatabaseConnectionException;
-import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
+import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
 
 import java.time.LocalDateTime;
 
@@ -86,15 +86,6 @@ public class Sale {
         for(int i = 0; i < revenueObservers.length; i++){
             if(revenueObservers[i] != null)
                 revenueObservers[i].updateRevenue(this.runningTotal);
-        }
-    }
-
-    public void addRevenueObserver(RevenueObserver revObserver){
-        for (int i = 0; i < revenueObservers.length; i++){
-            if (revenueObservers[i] == null){
-                revenueObservers[i] = revObserver;
-                break;
-            }
         }
     }
 

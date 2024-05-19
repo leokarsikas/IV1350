@@ -2,8 +2,6 @@ package se.kth.iv1350.pointOfSale.integration;
 
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
-import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
-import se.kth.iv1350.pointOfSale.exceptions.DatabaseConnectionException;
 
 /**
  * The InventorySystem class represents a mockup of a system for managing inventory and recording sales.

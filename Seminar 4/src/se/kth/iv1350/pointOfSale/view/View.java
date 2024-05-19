@@ -3,16 +3,9 @@ package se.kth.iv1350.pointOfSale.view;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.controller.Controller;
-import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.MessageCreator;
 import se.kth.iv1350.pointOfSale.TotalRevenueFileOutput;
-
-// N.B. imported for the sole purpose of simulating logger changes. This would in a real world scenario not be imported, 
-//and instead the user would press a button or something in that manner to switch logger, sending it from the main method most likely.
-import se.kth.iv1350.pointOfSale.SystemOutLogger;
-import se.kth.iv1350.pointOfSale.FileLogger;
-// N.B. imported for the sole purpose of simulating logger changes. This would in a real world scenario not be imported, 
-//and instead the user would press a button or something in that manner to switch logger, sending it from the main method most likely.
 
 import java.text.DecimalFormat; //Just for nice output
 
@@ -27,10 +20,6 @@ public class View {
     private MessageCreator messageCreator;
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
-
-    private void setLogger(MessageCreator messageLogger){
-        this.messageCreator = messageLogger;
-    }
 
     /**
      * View constructor, using the controller created in main.

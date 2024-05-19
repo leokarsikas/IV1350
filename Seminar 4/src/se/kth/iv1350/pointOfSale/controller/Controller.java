@@ -3,15 +3,13 @@ package se.kth.iv1350.pointOfSale.controller;
 import se.kth.iv1350.pointOfSale.MessageCreator;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
-import se.kth.iv1350.pointOfSale.exceptions.DatabaseConnectionException;
-import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
+import se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
+import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.model.Register;
 import se.kth.iv1350.pointOfSale.model.Sale;
 import se.kth.iv1350.pointOfSale.model.RevenueObserver;
-import se.kth.iv1350.pointOfSale.view.TotalRevenueView;
-import se.kth.iv1350.pointOfSale.TotalRevenueFileOutput;
 
 
 /**

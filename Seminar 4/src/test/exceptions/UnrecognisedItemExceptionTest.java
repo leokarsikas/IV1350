@@ -2,7 +2,7 @@ package test.exceptions;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
 
 /**
  * The UnrecognisedItemExceptionTest class tests the constructor of the UnrecognisedItemException class
