@@ -3,16 +3,9 @@ package se.kth.iv1350.pointOfSale.view;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.controller.Controller;
-import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.MessageCreator;
 import se.kth.iv1350.pointOfSale.TotalRevenueFileOutput;
-
-// N.B. imported for the sole purpose of simulating logger changes. This would in a real world scenario not be imported, 
-//and instead the user would press a button or something in that manner to switch logger, sending it from the main method most likely.
-import se.kth.iv1350.pointOfSale.SystemOutLogger;
-import se.kth.iv1350.pointOfSale.FileLogger;
-// N.B. imported for the sole purpose of simulating logger changes. This would in a real world scenario not be imported, 
-//and instead the user would press a button or something in that manner to switch logger, sending it from the main method most likely.
 
 import java.text.DecimalFormat; //Just for nice output
 
@@ -27,10 +20,6 @@ public class View {
     private MessageCreator messageCreator;
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
-
-    private void setLogger(MessageCreator messageLogger){
-        this.messageCreator = messageLogger;
-    }
 
     /**
      * View constructor, using the controller created in main.
@@ -72,130 +61,10 @@ public class View {
                     messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
                 }
                 catch (UnrecognisedItemException e){
-                    //setLogger(new FileLogger()); // See the comment in the corresponding import
-                    //messageCreator.log(e.getMessage());
-                    //setLogger(new SystemOutLogger()); // See the comment in the corresponding import
                     messageCreator.log(e.getMessage());
                 }
                 messageCreator.log("________________________________________________________");
             }
-
-    /*
-            //Add first item
-            try {
-                messageCreator.log("\nAdd 1 item with item id abc123:");
-                currentItem = contr.enterInfo("abc123");
-                salelog = contr.fetchSaleInfo();
-                messageCreator.log("Item ID: " + currentItem.getID());
-                messageCreator.log("Item name: " + currentItem.getName());
-                messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-                messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-                messageCreator.log("Item description: " + currentItem.getDescription());
-            }
-            catch (UnrecognisedItemException e){
-                setLogger(new FileLogger()); // See the comment in the corresponding import
-                messageCreator.log(e.getMessage());
-                setLogger(new SystemOutLogger()); // See the comment in the corresponding import
-                messageCreator.log(e.getMessage());
-            }
-            messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-            messageCreator.log("________________________________________________________");
-
-
-            //Add second item
-            try {
-                messageCreator.log("\nAdd 1 item with item id abc123:");
-                currentItem = contr.enterInfo("abc123");
-                salelog = contr.fetchSaleInfo();
-                messageCreator.log("Item ID: " + currentItem.getID());
-                messageCreator.log("Item name: " + currentItem.getName());
-                messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-                messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-                messageCreator.log("Item description: " + currentItem.getDescription());
-            }
-            catch (UnrecognisedItemException e){
-                setLogger(new FileLogger()); // See the comment in the corresponding import
-                messageCreator.log(e.getMessage());
-                setLogger(new SystemOutLogger()); // See the comment in the corresponding import   
-                messageCreator.log(e.getMessage());     
-            }
-
-            messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-
-            messageCreator.log("________________________________________________________");
-
-
-            //Add third item
-            try {
-                messageCreator.log("\nAdd 1 item with item id def456:");
-                currentItem = contr.enterInfo("def456");
-                salelog = contr.fetchSaleInfo();
-                messageCreator.log("Item ID: " + currentItem.getID());
-                messageCreator.log("Item name: " + currentItem.getName());
-                messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-                messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-                messageCreator.log("Item description: " + currentItem.getDescription());
-            }
-            catch (UnrecognisedItemException e){
-                setLogger(new FileLogger()); // See the comment in the corresponding import
-                messageCreator.log(e.getMessage());
-                setLogger(new SystemOutLogger()); // See the comment in the corresponding import 
-                messageCreator.log(e.getMessage());       
-            }
-            messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-            messageCreator.log("________________________________________________________");
-
-            //Add third item
-            messageCreator.log("\nAdd 1 item with item id undefined:");
-            try {
-                currentItem = contr.enterInfo("undefined");
-                salelog = contr.fetchSaleInfo();
-                messageCreator.log("Item ID: " + currentItem.getID());
-                messageCreator.log("Item name: " + currentItem.getName());
-                messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-                messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-                messageCreator.log("Item description: " + currentItem.getDescription());
-            }
-            catch (UnrecognisedItemException e){
-                setLogger(new FileLogger()); // See the comment in the corresponding import
-                messageCreator.log(e.getMessage());
-                setLogger(new SystemOutLogger()); // See the comment in the corresponding import
-                messageCreator.log(e.getMessage());
-            }
-            //catch (InventorySystemException e){
-            //    messageCreator.log(e.getMessage());
-            //}
-            messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-            messageCreator.log("________________________________________________________");
-
-
-            messageCreator.log("\nAdd 1 item with item id serverNotResponding:");
-            try {
-                currentItem = contr.enterInfo("serverNotResponding");
-                salelog = contr.fetchSaleInfo();
-                messageCreator.log("Item ID: " + currentItem.getID());
-                messageCreator.log("Item name: " + currentItem.getName());
-                messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-                messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-                messageCreator.log("Item description: " + currentItem.getDescription());
-            }
-            catch (UnrecognisedItemException e){
-                setLogger(new FileLogger()); // See the comment in the corresponding import
-                messageCreator.log(e.getMessage());
-                setLogger(new SystemOutLogger()); // See the comment in the corresponding import        
-            }
-            //catch (InventorySystemException e){
-            //    messageCreator.log(e.getMessage());
-            //}
-            messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-            messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-            messageCreator.log("________________________________________________________");
-    */
-
 
             messageCreator.log("\nEnd sale! ");
             contr.endSale();

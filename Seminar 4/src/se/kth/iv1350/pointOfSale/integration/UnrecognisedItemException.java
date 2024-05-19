@@ -1,4 +1,4 @@
-package se.kth.iv1350.pointOfSale.exceptions;
+package se.kth.iv1350.pointOfSale.integration;
 
 /**
  * Exception is thrown when a given item identifier is not present
