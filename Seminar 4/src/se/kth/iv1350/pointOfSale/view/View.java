@@ -4,9 +4,10 @@ import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.controller.Controller;
 import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
-import se.kth.iv1350.pointOfSale.FileLogger;
+import se.kth.iv1350.pointOfSale.model.RevenueObserver;
 import se.kth.iv1350.pointOfSale.MessageCreator;
-import se.kth.iv1350.pointOfSale.SystemOutLogger; // N.B. imported for the sole purpose of simulating logger changes. This would in a real world scenario not be imported, 
+import se.kth.iv1350.pointOfSale.SystemOutLogger; import se.kth.iv1350.pointOfSale.FileLogger;
+// N.B. imported for the sole purpose of simulating logger changes. This would in a real world scenario not be imported, 
 //and instead the user would press a button or something in that manner to switch logger, sending it from the main method most likely.
 
 import java.text.DecimalFormat; //Just for nice output
@@ -34,6 +35,7 @@ public class View {
     public View(Controller contr, MessageCreator messageCreator) {
         this.contr = contr;
         this.messageCreator = messageCreator;
+        //contr.addRevenueObserver(new RevenueObserver());
     }
 
     /**

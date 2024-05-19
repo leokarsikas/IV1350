@@ -8,6 +8,7 @@ import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 import se.kth.iv1350.pointOfSale.model.Register;
+import se.kth.iv1350.pointOfSale.model.RevenueObserver;
 import se.kth.iv1350.pointOfSale.model.Sale;
 
 /**
@@ -92,5 +93,18 @@ public class Controller {
         register.updateAmountInRegister(payment, change);
         sale.printReceipt();
         return change;
+    }
+/*
+    public void addRevenueObserver(RevenueObserver revObserver){
+        for (int i = 0; i < revenueObservers.length; i++){
+            if (revenueObservers[i] == null)
+                revenueObservers.add(revObserver);
+                break;
+        }
+    }
+*/
+
+    public void addRevenueObserver(RevenueObserver revObserver){
+        sale.addRevenueObserver(revObserver);
     }
 }

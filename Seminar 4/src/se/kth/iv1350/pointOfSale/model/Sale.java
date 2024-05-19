@@ -23,7 +23,8 @@ public class Sale {
     private double amountPaid;
     private double change;
     private InventorySystem inventorySystem;
-    private RevenueObserver[] revenueObservers;
+    //private RevenueObserver[] revenueObservers;
+    private RevenueObserver revenueObserver;
 
 /**
  * Constructor that creates a new instance of a Sale
@@ -35,7 +36,8 @@ public class Sale {
         setTimeOfSale();
         this.receipt = new Receipt();
         this.inventorySystem = invSyst;
-        this.revenueObservers = new RevenueObserver[2]; //Arbitrary size for now
+        //this.revenueObservers = new RevenueObserver[2]; //Arbitrary size for now
+        //this.revenueObserver = new RevenueObserver();
     }
 
     /**
@@ -83,9 +85,20 @@ public class Sale {
     }
 
     private void notifyRevenueObserver(){
-        for(int i = 0; i < revenueObservers.length; i++){
-            revenueObservers[i].updateRevenue(getRunningTotal());
-        }
+        //for(int i = 0; i < revenueObservers.length; i++){
+        //    revenueObservers[i].updateRevenue(getRunningTotal());
+        //}
+        revenueObserver.updateRevenue(getRunningTotal());
+    }
+
+    public void addRevenueObserver(RevenueObserver revObserver){
+        //for (int i = 0; i < revenueObservers.length; i++){
+        //    if (revenueObservers[i] == null)
+        //        revenueObservers[i].add(revObserver);
+        //        break;
+        //}
+        this.revenueObserver = revObserver;
+
     }
 
     /**
