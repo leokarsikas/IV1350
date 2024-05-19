@@ -27,7 +27,7 @@ public class Controller {
     private MessageCreator messageCreator;
     private RevenueObserver[] revenueObservers;
 
-
+    
     /**
      * The constructor of the controller. Creates a new inventory system, 
      * accounting system and register.
