@@ -4,10 +4,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FileLog{
+public class FileLogger implements MessageCreator{
     private PrintWriter printer;
 
-    public FileLog() {
+    public FileLogger() {
         try {
             printer = new PrintWriter(new FileWriter("seminar4.txt",true));
         }

@@ -3,7 +3,7 @@ package se.kth.iv1350.pointOfSale.integration;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
-import se.kth.iv1350.pointOfSale.exceptions.InventorySystemException;
+import se.kth.iv1350.pointOfSale.exceptions.DatabaseConnectionException;
 
 /**
  * The InventorySystem class represents a mockup of a system for managing inventory and recording sales.
@@ -31,7 +31,7 @@ public class InventorySystem {
  * @param itemID represents the ID of the item
  * @return a new instance of an ItemDTO based on the specified itemID.
  */
-    public ItemDTO itemLookup(String itemID) throws UnrecognisedItemException, InventorySystemException{
+    public ItemDTO itemLookup(String itemID) throws UnrecognisedItemException, DatabaseConnectionException{
             if (itemID == "abc123") {
                 return new ItemDTO(itemID, "BigWheel Oatmeal", 29.90, "Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free", 1, 6);
             } else if (itemID == "def456") {
@@ -40,7 +40,7 @@ public class InventorySystem {
                 throw new UnrecognisedItemException(itemID);
             }
             else if (itemID == "serverNotResponding"){
-                throw new InventorySystemException("Database not responding.");
+                throw new DatabaseConnectionException("\"InventorySystem\"");
             }
             return null;
     }

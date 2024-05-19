@@ -1,5 +1,7 @@
 package se.kth.iv1350.pointOfSale.startup;
 
+import se.kth.iv1350.pointOfSale.FileLogger;
+import se.kth.iv1350.pointOfSale.SystemOutLogger;
 import se.kth.iv1350.pointOfSale.controller.Controller;
 import se.kth.iv1350.pointOfSale.view.View;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
@@ -18,8 +20,8 @@ public class Main {
         Printer printer = new Printer();
         AccountingSystem accountingSystem= new AccountingSystem();
         InventorySystem inventorySystem = new InventorySystem();
-        Controller contr = new Controller();
-        View view = new View(contr);
+        Controller contr = new Controller(new SystemOutLogger());
+        View view = new View(contr, new SystemOutLogger());
 
         view.simulate();
     }

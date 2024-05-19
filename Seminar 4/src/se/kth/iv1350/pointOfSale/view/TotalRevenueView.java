@@ -8,6 +8,7 @@ public class TotalRevenueView implements RevenueObserver{
 
     public void updateRevenue(double total){
         this.totalRevenue += total;
+        System.out.println("Added "+total+" to total revenue. Accumulated revenue: "+totalRevenue);
     }
 
 }

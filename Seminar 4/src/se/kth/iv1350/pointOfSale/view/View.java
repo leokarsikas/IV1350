@@ -1,11 +1,13 @@
 package se.kth.iv1350.pointOfSale.view;
 
-import se.kth.iv1350.pointOfSale.FileLog;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.controller.Controller;
-import se.kth.iv1350.pointOfSale.exceptions.InventorySystemException;
 import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.FileLogger;
+import se.kth.iv1350.pointOfSale.MessageCreator;
+import se.kth.iv1350.pointOfSale.SystemOutLogger; // N.B. imported for the sole purpose of simulating logger changes. This would in a real world scenario not be imported, 
+//and instead the user would press a button or something in that manner to switch logger, sending it from the main method most likely.
 
 import java.text.DecimalFormat; //Just for nice output
 
@@ -17,16 +19,21 @@ import java.text.DecimalFormat; //Just for nice output
  */
 public class View {
     private Controller contr;
+    private MessageCreator messageCreator;
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
-    private FileLog fileLog = new FileLog();
+
+    private void setLogger(MessageCreator messageLogger){
+        this.messageCreator = messageLogger;
+    }
 
     /**
      * View constructor, using the controller created in main.
      * @param contr is the controller.
      */
-    public View(Controller contr) {
+    public View(Controller contr, MessageCreator messageCreator) {
         this.contr = contr;
+        this.messageCreator = messageCreator;
     }
 
     /**
@@ -34,121 +41,134 @@ public class View {
      * in Seminar 1.
      */
     public void simulate(){
-        System.out.println("\nStart sale! ");
+        messageCreator.log("\nStart sale! ");
         contr.startSale();
         ItemDTO currentItem = null;
         SaleLogDTO salelog = null;
 
         //Add first item
         try {
-            System.out.println("\nAdd 1 item with item id abc123:");
+            messageCreator.log("\nAdd 1 item with item id abc123:");
             currentItem = contr.enterInfo("abc123");
             salelog = contr.fetchSaleInfo();
-            System.out.println("Item ID: " + currentItem.getID());
-            System.out.println("Item name: " + currentItem.getName());
-            System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-            System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-            System.out.println("Item description: " + currentItem.getDescription());
+            messageCreator.log("Item ID: " + currentItem.getID());
+            messageCreator.log("Item name: " + currentItem.getName());
+            messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+            messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+            messageCreator.log("Item description: " + currentItem.getDescription());
         }
         catch (UnrecognisedItemException e){
-            System.err.println(e);
+            setLogger(new FileLogger()); // See the comment in the corresponding import
+            messageCreator.log(e.getMessage());
+            setLogger(new SystemOutLogger()); // See the comment in the corresponding import
+            messageCreator.log(e.getMessage());
         }
-        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-        System.out.println("________________________________________________________");
+        messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        messageCreator.log("________________________________________________________");
 
 
         //Add second item
         try {
-            System.out.println("\nAdd 1 item with item id abc123:");
+            messageCreator.log("\nAdd 1 item with item id abc123:");
             currentItem = contr.enterInfo("abc123");
             salelog = contr.fetchSaleInfo();
-            System.out.println("Item ID: " + currentItem.getID());
-            System.out.println("Item name: " + currentItem.getName());
-            System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-            System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-            System.out.println("Item description: " + currentItem.getDescription());
+            messageCreator.log("Item ID: " + currentItem.getID());
+            messageCreator.log("Item name: " + currentItem.getName());
+            messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+            messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+            messageCreator.log("Item description: " + currentItem.getDescription());
         }
         catch (UnrecognisedItemException e){
-            System.out.println(e.getMessage());
+            setLogger(new FileLogger()); // See the comment in the corresponding import
+            messageCreator.log(e.getMessage());
+            setLogger(new SystemOutLogger()); // See the comment in the corresponding import   
+            messageCreator.log(e.getMessage());     
         }
 
-        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
 
-        System.out.println("________________________________________________________");
+        messageCreator.log("________________________________________________________");
 
 
         //Add third item
         try {
-            System.out.println("\nAdd 1 item with item id def456:");
+            messageCreator.log("\nAdd 1 item with item id def456:");
             currentItem = contr.enterInfo("def456");
             salelog = contr.fetchSaleInfo();
-            System.out.println("Item ID: " + currentItem.getID());
-            System.out.println("Item name: " + currentItem.getName());
-            System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-            System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-            System.out.println("Item description: " + currentItem.getDescription());
+            messageCreator.log("Item ID: " + currentItem.getID());
+            messageCreator.log("Item name: " + currentItem.getName());
+            messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+            messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+            messageCreator.log("Item description: " + currentItem.getDescription());
         }
         catch (UnrecognisedItemException e){
-            System.out.println(e.getMessage());
+            setLogger(new FileLogger()); // See the comment in the corresponding import
+            messageCreator.log(e.getMessage());
+            setLogger(new SystemOutLogger()); // See the comment in the corresponding import 
+            messageCreator.log(e.getMessage());       
         }
-        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-        System.out.println("________________________________________________________");
+        messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        messageCreator.log("________________________________________________________");
 
         //Add third item
-        System.out.println("\nAdd 1 item with item id undefined:");
+        messageCreator.log("\nAdd 1 item with item id undefined:");
         try {
             currentItem = contr.enterInfo("undefined");
             salelog = contr.fetchSaleInfo();
-            System.out.println("Item ID: " + currentItem.getID());
-            System.out.println("Item name: " + currentItem.getName());
-            System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-            System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-            System.out.println("Item description: " + currentItem.getDescription());
+            messageCreator.log("Item ID: " + currentItem.getID());
+            messageCreator.log("Item name: " + currentItem.getName());
+            messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+            messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+            messageCreator.log("Item description: " + currentItem.getDescription());
         }
         catch (UnrecognisedItemException e){
-            System.out.println(e.getMessage());
-            fileLog.log(e.getMessage());
+            setLogger(new FileLogger()); // See the comment in the corresponding import
+            messageCreator.log(e.getMessage());
+            setLogger(new SystemOutLogger()); // See the comment in the corresponding import
+            messageCreator.log(e.getMessage());
         }
         //catch (InventorySystemException e){
-        //    System.out.println(e.getMessage());
+        //    messageCreator.log(e.getMessage());
         //}
-        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-        System.out.println("________________________________________________________");
+        messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        messageCreator.log("________________________________________________________");
 
 
-        System.out.println("\nAdd 1 item with item id serverNotResponding:");
+        messageCreator.log("\nAdd 1 item with item id serverNotResponding:");
         try {
             currentItem = contr.enterInfo("serverNotResponding");
             salelog = contr.fetchSaleInfo();
-            System.out.println("Item ID: " + currentItem.getID());
-            System.out.println("Item name: " + currentItem.getName());
-            System.out.println("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
-            System.out.println("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
-            System.out.println("Item description: " + currentItem.getDescription());
+            messageCreator.log("Item ID: " + currentItem.getID());
+            messageCreator.log("Item name: " + currentItem.getName());
+            messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+            messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+            messageCreator.log("Item description: " + currentItem.getDescription());
         }
         catch (UnrecognisedItemException e){
-            System.out.println(e.getMessage());
+            setLogger(new FileLogger()); // See the comment in the corresponding import
+            messageCreator.log(e.getMessage());
+            setLogger(new SystemOutLogger()); // See the comment in the corresponding import        
         }
         //catch (InventorySystemException e){
-        //    System.out.println(e.getMessage());
+        //    messageCreator.log(e.getMessage());
         //}
-        System.out.println("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
-        System.out.println("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-        System.out.println("________________________________________________________");
+        messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+        messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+        messageCreator.log("________________________________________________________");
 
 
 
-        System.out.println("\nEnd sale! ");
+        messageCreator.log("\nEnd sale! ");
         contr.endSale();
-        System.out.println("Total cost (incl VAT): "+doubleDecimal.format(salelog.getRunningTotal())+" SEK");
+        messageCreator.log("Total cost (incl VAT): "+doubleDecimal.format(salelog.getRunningTotal())+" SEK");
 
-        System.out.println("Customer pays 100:00 SEK");
+        messageCreator.log("Customer pays 100:00 SEK");
         double change = contr.presentChange(100);
-        System.out.println("Change to give the customer: "+doubleDecimal.format(change)+" SEK");
+        messageCreator.log("Change to give the customer: "+doubleDecimal.format(change)+" SEK");
 
     }
 }

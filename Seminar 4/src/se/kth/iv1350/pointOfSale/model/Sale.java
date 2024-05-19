@@ -2,7 +2,7 @@ package se.kth.iv1350.pointOfSale.model;
 
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
-import se.kth.iv1350.pointOfSale.exceptions.InventorySystemException;
+import se.kth.iv1350.pointOfSale.exceptions.DatabaseConnectionException;
 import se.kth.iv1350.pointOfSale.exceptions.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 
@@ -109,7 +109,7 @@ public class Sale {
      * @return ItemDTO that represents the added or updated item.     
      * 
      * */
-    public ItemDTO addItem(String itemID) throws UnrecognisedItemException, InventorySystemException {
+    public ItemDTO addItem(String itemID) throws UnrecognisedItemException, DatabaseConnectionException {
         ItemDTO item;
         int currentItemIndex = isItemAlreadyInSale(itemID);
 
@@ -133,7 +133,7 @@ public class Sale {
         return itemsCounter;
     }
 
-    private void addNewItem(String itemID) throws UnrecognisedItemException, InventorySystemException{
+    private void addNewItem(String itemID) throws UnrecognisedItemException, DatabaseConnectionException{
             ItemDTO item = inventorySystem.itemLookup(itemID);
             items[itemsCounter++] = new Item(item);
     }
