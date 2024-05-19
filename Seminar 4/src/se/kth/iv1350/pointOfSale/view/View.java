@@ -47,7 +47,32 @@ public class View {
         contr.startSale();
         ItemDTO currentItem = null;
         SaleLogDTO salelog = null;
+        String[] itemIDs = {"abc123", "abc123", "def456", "undefined", "serverNotResponding"};
 
+        for (int i = 0; i < itemIDs.length; i++){
+            try {
+                messageCreator.log("\nAdding 1 item with item id "+itemIDs[i]);
+                currentItem = contr.enterInfo(itemIDs[i]);
+                salelog = contr.fetchSaleInfo();
+                messageCreator.log("Item ID: " + currentItem.getID());
+                messageCreator.log("Item name: " + currentItem.getName());
+                messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
+                messageCreator.log("Item VAT: " + noDecimal.format(currentItem.getVAT()) + "%");
+                messageCreator.log("Item description: " + currentItem.getDescription());
+
+                messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
+                messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
+            }
+            catch (UnrecognisedItemException e){
+                setLogger(new FileLogger()); // See the comment in the corresponding import
+                messageCreator.log(e.getMessage());
+                setLogger(new SystemOutLogger()); // See the comment in the corresponding import
+                messageCreator.log(e.getMessage());
+            }
+            messageCreator.log("________________________________________________________");
+        }
+
+/*
         //Add first item
         try {
             messageCreator.log("\nAdd 1 item with item id abc123:");
@@ -161,7 +186,7 @@ public class View {
         messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
         messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
         messageCreator.log("________________________________________________________");
-
+ */
 
 
         messageCreator.log("\nEnd sale! ");
