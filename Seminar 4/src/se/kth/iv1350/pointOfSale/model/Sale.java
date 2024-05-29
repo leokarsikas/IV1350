@@ -5,6 +5,7 @@ import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.integration.Printer;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
  */
 
 public class Sale {
+    private Printer printer;
     private double runningTotal;
     private Item[] items;
     private int itemsCounter = 0;
@@ -29,7 +31,8 @@ public class Sale {
  * Constructor that creates a new instance of a Sale
  * @param invSyst represents the inventory system so that 
  */
-    public Sale(InventorySystem invSyst){
+    public Sale(InventorySystem invSyst, Printer printer){
+        this.printer = printer;
         this.runningTotal = 0;
         this.items = new Item[2]; //Arbitrary size for now
         setTimeOfSale();
@@ -65,7 +68,7 @@ public class Sale {
                 this.totalVAT,
                 this.time,
                 this.amountPaid,
-                this.change)
+                this.change), this.printer
         );
 
     }
@@ -149,5 +152,4 @@ public class Sale {
         this.runningTotal += itemPrice;
         this.totalVAT += itemNumVAT;
     }
-
 }

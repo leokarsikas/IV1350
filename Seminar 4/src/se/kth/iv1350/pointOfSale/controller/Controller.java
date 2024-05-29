@@ -10,6 +10,8 @@ import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.model.Register;
 import se.kth.iv1350.pointOfSale.model.Sale;
 import se.kth.iv1350.pointOfSale.model.RevenueObserver;
+import se.kth.iv1350.pointOfSale.integration.Printer;
+
 
 
 /**
@@ -18,6 +20,7 @@ import se.kth.iv1350.pointOfSale.model.RevenueObserver;
  * model and integration packages.
  */
 public class Controller {
+    private Printer printer;
     private Sale sale;
     private InventorySystem inventorySystem;
     private AccountingSystem accountingSystem;
@@ -30,9 +33,10 @@ public class Controller {
      * The constructor of the controller. Creates a new inventory system, 
      * accounting system and register.
      */
-    public Controller(MessageCreator messageCreator) {
-        this.inventorySystem = new InventorySystem();
-        this.accountingSystem = new AccountingSystem();
+    public Controller(MessageCreator messageCreator, Printer printer, InventorySystem inventorySystem, AccountingSystem accountingSystem) {
+        this.printer = printer;
+        this.inventorySystem = inventorySystem;
+        this.accountingSystem = accountingSystem;
         this.register = new Register();
         this.messageCreator = messageCreator;
         this.revenueObservers = new RevenueObserver[10]; //Arbitrary size for now
@@ -42,7 +46,7 @@ public class Controller {
      * startSale initializes a new Sale object with a reference to the inventorySystem
      */
     public void startSale() {
-        this.sale = new Sale(this.inventorySystem);
+        this.sale = new Sale(this.inventorySystem, this.printer);
         this.sale.addAllObservers(this.revenueObservers);
     }
 

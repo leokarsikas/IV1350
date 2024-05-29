@@ -13,7 +13,6 @@ public class TotalRevenueFileOutput implements RevenueObserver{
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
     private MessageCreator messageCreator = new FileLogger("Revenuelog.txt");
     private double totalRevenue = 0;
-
     /**
      * Updates the total revenue with the specified amount and logs the update to a file.
      * The logged message includes the added amount and the new total revenue.

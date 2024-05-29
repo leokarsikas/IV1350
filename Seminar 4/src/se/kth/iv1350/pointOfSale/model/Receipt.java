@@ -9,22 +9,19 @@ import se.kth.iv1350.pointOfSale.integration.Printer;
  *  
  */
 public class Receipt {
-    private Printer printer;
 
     /**
      * Constructor that create a new instance of a printer in order for 
      * the printout to operate correctly
      */
-    public Receipt(){
-        this.printer = new Printer();
-    }
+   
 
     /**
      * printReceipt calls the printer to print out the saleLog
      * @param saleLog consists of the current sale information. 
      */
-    public void printReceipt(SaleLogDTO saleLog){
-        printer.printReceipt(saleLog);
+    public void printReceipt(SaleLogDTO saleLog, Printer print){
+        print.printReceipt(saleLog);
     }
 
 }
