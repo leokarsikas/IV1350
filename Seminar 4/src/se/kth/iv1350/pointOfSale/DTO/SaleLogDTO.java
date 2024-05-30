@@ -63,7 +63,11 @@ public class SaleLogDTO {
      * @param index the index of the item in the list
      * @return an ItemDTO of the item at the specified index
      */
-    public ItemDTO getItemFromList(int index) { return new ItemDTO(items[index]); }
+    public ItemDTO getItemFromList(int index) { 
+        if (items[index] != null)
+            return new ItemDTO(items[index]); 
+        return null;
+    }
 
 
 }

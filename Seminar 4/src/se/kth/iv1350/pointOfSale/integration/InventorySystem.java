@@ -34,7 +34,7 @@ public class InventorySystem {
                 return new ItemDTO(itemID, "BigWheel Oatmeal", 29.90, "Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free", 1, 6);
             } else if (itemID == "def456") {
                 return new ItemDTO(itemID, "YoGoGo Blueberry", 14.90, "YouGoGo Blueberry 240g, low sugar yoghurt, blueberry flavour", 1, 6);
-            } else if (itemID == "undefined") {
+            } else if (itemID == "ghi789") {
                 throw new UnrecognisedItemException(itemID);
             }
             else if (itemID == "serverNotResponding"){

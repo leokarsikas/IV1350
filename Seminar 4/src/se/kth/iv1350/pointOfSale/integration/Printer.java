@@ -31,10 +31,12 @@ public class Printer {
 
         for (int i = 0; i < saleLog.getLength(); i++) {
             ItemDTO item = saleLog.getItemFromList(i);
-            System.out.print(item.getName()+"         ");
-            System.out.print(item.getQuantity()+" x ");
-            System.out.print(doubleDecimal.format(item.getPrice())+"    ");
-            System.out.println(doubleDecimal.format(item.getPrice()*item.getQuantity())+" SEK");
+            if (item != null){
+                System.out.print(item.getName()+"         ");
+                System.out.print(item.getQuantity()+" x ");
+                System.out.print(doubleDecimal.format(item.getPrice())+"    ");
+                System.out.println(doubleDecimal.format(item.getPrice()*item.getQuantity())+" SEK");
+            }
         }
 
         System.out.println("\nTotal:                                "+doubleDecimal.format(saleLog.getRunningTotal())+" SEK");

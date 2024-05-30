@@ -3,8 +3,11 @@ package se.kth.iv1350.pointOfSale.view;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.controller.Controller;
+import se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException;
 import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.FileLogger;
 import se.kth.iv1350.pointOfSale.MessageCreator;
+import se.kth.iv1350.pointOfSale.SystemOutLogger;
 import se.kth.iv1350.pointOfSale.TotalRevenueFileOutput;
 
 import java.text.DecimalFormat; //Just for nice output
@@ -32,6 +35,10 @@ public class View {
         contr.addRevenueObserver(new TotalRevenueView());
     }
 
+    private void switchLogger(MessageCreator newMessager){
+        this.messageCreator = newMessager;
+    }
+
     /**
      * Simulates the cashier performing all its actions in the flow described 
      * in Seminar 1.
@@ -42,15 +49,27 @@ public class View {
             contr.startSale();
             ItemDTO currentItem = null;
             SaleLogDTO salelog = null;
-            String[] itemIDs = {"abc123", "abc123", "def456", "undefined", "def456", "serverNotResponding"};
+            String[] itemIDs = {"abc123", "abc123", "def456", "ghi789", "def456", "serverNotResponding"};
+            switchLogger(new FileLogger("Errorlog.txt"));
+            messageCreator.log("\nSale "+(j+1)+" errors: ");
+            switchLogger(new SystemOutLogger());
 
             for (int i = 0+j; i < itemIDs.length-2+j; i++){
-                if(itemIDs[i] == null)
-                    break;
+                currentItem = null;
                 try {
                     messageCreator.log("\nAdding 1 item with item id "+itemIDs[i]);
                     currentItem = contr.enterInfo(itemIDs[i]);
                     salelog = contr.fetchSaleInfo();
+                }
+                catch (UnrecognisedItemException e){
+                    messageCreator.log(e.getMessage());
+                }
+                catch (DatabaseConnectionException e){
+                    switchLogger(new FileLogger("Errorlog.txt"));
+                    messageCreator.log(e.getMessage());
+                    switchLogger(new SystemOutLogger());
+                }
+                if (currentItem != null){
                     messageCreator.log("Item ID: " + currentItem.getID());
                     messageCreator.log("Item name: " + currentItem.getName());
                     messageCreator.log("Item price: " + doubleDecimal.format(currentItem.getPrice()) + " SEK");
@@ -59,9 +78,6 @@ public class View {
 
                     messageCreator.log("\nTotal cost (incl VAT): " + doubleDecimal.format(salelog.getRunningTotal()) + " SEK");
                     messageCreator.log("Total VAT: " + doubleDecimal.format(salelog.getTotalVAT()) + " SEK");
-                }
-                catch (UnrecognisedItemException e){
-                    messageCreator.log(e.getMessage());
                 }
                 messageCreator.log("________________________________________________________");
             }

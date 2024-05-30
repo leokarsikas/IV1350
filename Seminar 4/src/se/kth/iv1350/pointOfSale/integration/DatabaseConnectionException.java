@@ -5,6 +5,8 @@ package se.kth.iv1350.pointOfSale.integration;
  * (Simulated by calling with identifier <code>InventoryDatabaseFailure</code>)
  */
 public class DatabaseConnectionException extends RuntimeException {
+    public String printStackTrace;
+
     public DatabaseConnectionException(String errorMessage) {
         super("Database "+errorMessage+" is not responding.");
     }

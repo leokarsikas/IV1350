@@ -62,8 +62,12 @@ public class Controller {
         try{
             return sale.addItem(itemID);
         } 
-        catch (DatabaseConnectionException e) {
+        catch (UnrecognisedItemException e) {
             messageCreator.log(e.getMessage());
+            throw e;
+        }
+        catch (DatabaseConnectionException e) {
+            //messageCreator.log(e.getMessage());
             throw e;
         }
     }

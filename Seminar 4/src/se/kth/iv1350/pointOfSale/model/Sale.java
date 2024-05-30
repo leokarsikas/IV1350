@@ -34,7 +34,7 @@ public class Sale {
     public Sale(InventorySystem invSyst, Printer printer){
         this.printer = printer;
         this.runningTotal = 0;
-        this.items = new Item[2]; //Arbitrary size for now
+        this.items = new Item[10]; //Arbitrary size for now
         setTimeOfSale();
         this.receipt = new Receipt();
         this.inventorySystem = invSyst;
@@ -128,6 +128,10 @@ public class Sale {
         }
         item = new ItemDTO(items[currentItemIndex]);
         updateSale(item);
+        for (int i = 0; i < 10; i++){
+            if(items[i] != null)
+                System.out.println(i);
+        }
 
         return item;
     }
