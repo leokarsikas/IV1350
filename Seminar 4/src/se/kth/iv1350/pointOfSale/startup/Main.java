@@ -21,7 +21,6 @@ public class Main {
         Controller contr = new Controller(new FileLogger("Errorlog.txt"), printer, inventorySystem, accountingSystem);
         View view = new View(contr, new SystemOutLogger());
         
-
         view.simulate();
     }
 }

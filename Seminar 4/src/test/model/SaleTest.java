@@ -20,7 +20,8 @@ public class SaleTest {
     @BeforeEach
     public void setUp() {
         InventorySystem inventorySystem = new InventorySystem();
-        sale = new Sale(inventorySystem);
+        Printer printer = new Printer();
+        sale = new Sale(inventorySystem, printer);
     }
 
     /*abc123

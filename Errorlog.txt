@@ -2,3 +2,23 @@ Database "InventorySystem" is not responding.
 Database "InventorySystem" is not responding.
 Database "InventorySystem" is not responding.
 Database "InventorySystem" is not responding.
+
+Sale 1 errors: 
+Item identifier "ghi789" does not exist in inventory.
+
+Sale 2 errors: 
+Item identifier "ghi789" does not exist in inventory.
+
+Sale 3 errors: 
+Item identifier "ghi789" does not exist in inventory.
+Database "InventorySystem" is not responding.
+
+Sale 1 errors: 
+Item identifier "ghi789" does not exist in inventory.
+
+Sale 2 errors: 
+Item identifier "ghi789" does not exist in inventory.
+
+Sale 3 errors: 
+Item identifier "ghi789" does not exist in inventory.
+Database "InventorySystem" is not responding.
