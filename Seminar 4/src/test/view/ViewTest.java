@@ -1,7 +1,6 @@
 package test.view;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import se.kth.iv1350.pointOfSale.SystemOutLogger;
 import se.kth.iv1350.pointOfSale.integration.Printer;
 
