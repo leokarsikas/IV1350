@@ -22,3 +22,10 @@ Item identifier "ghi789" does not exist in inventory.
 Sale 3 errors: 
 Item identifier "ghi789" does not exist in inventory.
 Database "InventorySystem" is not responding.
+
+Sale 1 errors: 
+
+Sale 2 errors: 
+
+Sale 3 errors: 
+Database "InventorySystem" is not responding.
