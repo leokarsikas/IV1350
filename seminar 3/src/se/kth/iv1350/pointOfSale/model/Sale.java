@@ -30,7 +30,7 @@ public class Sale {
  */
     public Sale(InventorySystem invSyst, Printer print){
         this.runningTotal = 0;
-        this.items = new Item[2]; //Arbitrary size for now
+        this.items = new Item[3]; //Arbitrary size for now
         this.printer = print;
         setTimeOfSale();
         this.receipt = new Receipt();
