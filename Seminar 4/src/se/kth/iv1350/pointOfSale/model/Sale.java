@@ -115,7 +115,8 @@ public class Sale {
      * 
      * @param itemID is the ID of the item to be added. 
      * @return ItemDTO that represents the added or updated item.     
-     * 
+     * @throws UnrecognisedItemException is thrown if the itemID is not found in the inventory.
+     * @throws DatabaseConnectionException is thrown if the database is not responding.
      * */
     public ItemDTO addItem(String itemID) throws UnrecognisedItemException, DatabaseConnectionException {
         ItemDTO item;
