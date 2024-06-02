@@ -1,4 +1,5 @@
 package test.controller;
+
 import se.kth.iv1350.pointOfSale.controller.Controller;
 import se.kth.iv1350.pointOfSale.integration.*;
 import se.kth.iv1350.pointOfSale.model.Sale;
@@ -8,11 +9,7 @@ import org.junit.jupiter.api.Test;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 
-//import com.oracle.webservices.internal.api.message.MessageContext;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-
 
 public class ControllerTest {
     private Controller controller;
@@ -29,15 +26,19 @@ public class ControllerTest {
     @Test
     public void testStartSale() {
         controller.startSale();
-        //assertNotNull(controller.getSale(), "Sale object was not created");
+        // Uncomment the assertion below once the getSale method is implemented in the controller
+        // assertNotNull(controller.getSale(), "Sale object was not created");
     }
 
     @Test
-    public void testEnterInfo() throws DatabaseConnectionException, UnrecognisedItemException {
+    public void testEnterInfo() {
         controller.startSale();
-        ItemDTO item = controller.enterInfo("abc123");
-        assertEquals("abc123", item.getID(), "Item ID is not correct");
+        try {
+            ItemDTO item = controller.enterInfo("abc123");
+            assertEquals("abc123", item.getID(), "Item ID is not correct");
+        } catch (DatabaseConnectionException | UnrecognisedItemException e) {
+            e.printStackTrace();
+            fail("Exception thrown: " + e.getMessage());
+        }
     }
-
-   
 }
