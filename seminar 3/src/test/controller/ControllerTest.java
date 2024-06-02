@@ -48,6 +48,14 @@ public class ControllerTest {
         assertTrue(saleInfo.getLength() > 0, "SaleLogDTO should contain items");
     }
 
+    @Test
+    public void testFetchSaleInfoForZeroItems() {
+        controller.startSale();
+        SaleLogDTO saleInfo = controller.fetchSaleInfo();
+        assertNotNull(saleInfo, "SaleLogDTO should not be null");
+        assertTrue(saleInfo.getLength() == 0, "SaleLogDTO should not contain any items");
+    }
+
     
 
     @Test

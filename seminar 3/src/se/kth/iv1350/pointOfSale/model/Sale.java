@@ -6,6 +6,8 @@ import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 import se.kth.iv1350.pointOfSale.integration.Printer;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 
 /**
  * The sale class keeps track of sale instance of a
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 
 public class Sale {
     private double runningTotal;
-    private Item[] items;
+    private ArrayList<Item> items;
     private int itemsCounter = 0;
     private LocalDateTime time;
     private Receipt receipt;
@@ -30,7 +32,7 @@ public class Sale {
  */
     public Sale(InventorySystem invSyst, Printer print){
         this.runningTotal = 0;
-        this.items = new Item[3]; //Arbitrary size for now
+        this.items = new ArrayList<>();
         this.printer = print;
         setTimeOfSale();
         this.receipt = new Receipt();
@@ -106,19 +108,19 @@ public class Sale {
         int currentItemIndex = isItemAlreadyInSale(itemID);
 
         if (currentItemIndex < itemsCounter)
-            items[currentItemIndex].increaseQuantity();
+            items.get(currentItemIndex).increaseQuantity();
         else
             addNewItem(itemID);
 
-        item = new ItemDTO(items[currentItemIndex]);
+        item = new ItemDTO(items.get(currentItemIndex));
         updateSale(item);
 
         return item;
     }
     
     private int isItemAlreadyInSale(String itemID){
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getID().equals(itemID)) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) != null && items.get(i).getID().equals(itemID)) {
                 return i;
             }
         }
@@ -127,7 +129,8 @@ public class Sale {
 
     private void addNewItem(String itemID){
         ItemDTO item =  inventorySystem.itemLookup(itemID);
-        items[itemsCounter++] = new Item(item);
+        items.add(new Item(item));
+        itemsCounter++;
     }
 
     private void updateSale(ItemDTO item){
