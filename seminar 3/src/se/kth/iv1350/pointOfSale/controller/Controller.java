@@ -1,11 +1,14 @@
 package se.kth.iv1350.pointOfSale.controller;
 
+import java.security.Principal;
+
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 import se.kth.iv1350.pointOfSale.model.Register;
 import se.kth.iv1350.pointOfSale.model.Sale;
+import se.kth.iv1350.pointOfSale.integration.Printer;
 
 /**
  * The controller of the point of sale program. The controller
@@ -17,14 +20,16 @@ public class Controller {
     private InventorySystem inventorySystem;
     private AccountingSystem accountingSystem;
     private Register register;
+    private Printer printer;
 
     /**
      * The constructor of the controller. Creates a new inventory system, 
      * accounting system and register.
      */
-    public Controller() {
-        this.inventorySystem = new InventorySystem();
-        this.accountingSystem = new AccountingSystem();
+    public Controller(InventorySystem inventorySystem, AccountingSystem accountingSystem, Printer printer) {
+        this.inventorySystem = inventorySystem;
+        this.accountingSystem = accountingSystem;
+        this.printer = printer;
         this.register = new Register();
     }
 
@@ -32,7 +37,7 @@ public class Controller {
      * startSale initializes a new Sale object with a reference to the inventorySystem
      */
     public void startSale() {
-        this.sale = new Sale(this.inventorySystem);
+        this.sale = new Sale(this.inventorySystem, this.printer);
     }
 
     /**

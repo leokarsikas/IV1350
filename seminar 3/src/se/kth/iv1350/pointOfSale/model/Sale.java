@@ -3,6 +3,7 @@ package se.kth.iv1350.pointOfSale.model;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
+import se.kth.iv1350.pointOfSale.integration.Printer;
 
 import java.time.LocalDateTime;
 
@@ -21,14 +22,16 @@ public class Sale {
     private double amountPaid;
     private double change;
     private InventorySystem inventorySystem;
+    private Printer printer;
 
 /**
  * Constructor that creates a new instance of a Sale
  * @param invSyst represents the inventory system so that 
  */
-    public Sale(InventorySystem invSyst){
+    public Sale(InventorySystem invSyst, Printer print){
         this.runningTotal = 0;
         this.items = new Item[2]; //Arbitrary size for now
+        this.printer = print;
         setTimeOfSale();
         this.receipt = new Receipt();
         this.inventorySystem = invSyst;
@@ -61,7 +64,7 @@ public class Sale {
                 this.totalVAT,
                 this.time,
                 this.amountPaid,
-                this.change)
+                this.change), this.printer
         );
 
     }

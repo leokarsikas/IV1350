@@ -18,7 +18,7 @@ public class Main {
         Printer printer = new Printer();
         AccountingSystem accountingSystem= new AccountingSystem();
         InventorySystem inventorySystem = new InventorySystem();
-        Controller contr = new Controller();
+        Controller contr = new Controller(inventorySystem, accountingSystem, printer);
         View view = new View(contr);
 
         view.simulate();
