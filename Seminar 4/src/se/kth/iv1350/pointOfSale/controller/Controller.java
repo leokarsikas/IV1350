@@ -63,7 +63,6 @@ public class Controller {
             return sale.addItem(itemID);
         } 
         catch (UnrecognisedItemException e) {
-            messageCreator.log(e.getMessage());
             throw e;
         }
         catch (DatabaseConnectionException e) {
