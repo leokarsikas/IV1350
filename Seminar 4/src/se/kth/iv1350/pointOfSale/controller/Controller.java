@@ -57,6 +57,8 @@ public class Controller {
      * the sale.
      * @return an ItemDTO containing the most recently added item is
      * returned.
+     * @throws UnrecognisedItemException is thrown if the itemID is not found in the inventory.
+     * @throws DatabaseConnectionException is thrown if the database is not responding.
      */
     public ItemDTO enterInfo(String itemID) throws UnrecognisedItemException, DatabaseConnectionException {
         try{
