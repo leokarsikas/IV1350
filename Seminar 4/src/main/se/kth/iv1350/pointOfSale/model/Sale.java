@@ -129,10 +129,6 @@ public class Sale {
         }
         item = new ItemDTO(items[currentItemIndex]);
         updateSale(item);
-        for (int i = 0; i < 10; i++){
-            if(items[i] != null)
-                System.out.println(i);
-        }
 
         return item;
     }
