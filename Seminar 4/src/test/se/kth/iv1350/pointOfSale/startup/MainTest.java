@@ -1,6 +1,6 @@
-package test.startup;
+package test.se.kth.iv1350.pointOfSale.startup;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import se.kth.iv1350.pointOfSale.startup.Main;
 
 

@@ -1,4 +1,4 @@
-package test.controller;
+package test.se.kth.iv1350.pointOfSale.controller;
 
 import se.kth.iv1350.pointOfSale.controller.Controller;
 import se.kth.iv1350.pointOfSale.integration.*;
