@@ -1,6 +1,5 @@
-package test.integration;
+package se.kth.iv1350.pointOfSale.integration;
 
-import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

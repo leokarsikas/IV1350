@@ -61,23 +61,28 @@ public class SaleTest {
         assertNotNull(itemDTO, "ItemDTO is null");
         assertEquals("abc123", itemDTO.getID(), "Item ID is not correct");
         assertEquals(1, itemDTO.getQuantity(), "Item quantity is not one");
-        assertEquals(10.0, itemDTO.getPrice(), "Item price is not correct");
-        assertEquals(25.0, itemDTO.getVAT(), "Item VAT is not correct");
+        assertEquals(29.9, itemDTO.getPrice(), "Item price is not correct");
+        assertEquals(6.0, itemDTO.getVAT(), "Item VAT is not correct");
     }
 
-    /*  @Test
+      @Test
     public void testIsItemAlreadyInSale() {
-        sale.addItem("abc123");
-        sale.addItem("def456");
+       sale.addItem("abc123");
+       ItemDTO item = sale.addItem("abc123");
 
-        int index = sale.isItemAlreadyInSale("abc123");
-        assertEquals(0, index, "Item should be at index 0");
+        SaleLogDTO saleLogDTO = sale.fetchSaleInfo();
 
-        index = sale.isItemAlreadyInSale("def456");
-        assertEquals(1, index, "Item should be at index 1");
+         
 
-        index = sale.isItemAlreadyInSale("ghi789");
-        assertEquals(2, index, "Item should not be found and index should be itemsCounter");
+        assertEquals(1, saleLogDTO.getLength(), "Items in the array should be 1");
+
+        
+        assertEquals(2, item.getQuantity(), "Item quantity should be 2");
+
+       
+        assertEquals("abc123", saleLogDTO.getItemFromList(0).getID(), "Item ID should be abc123");
+
+        assertEquals(null, saleLogDTO.getItemFromList(1), "There should be no items at index 1");
     }
 
     @Test
@@ -98,7 +103,7 @@ public class SaleTest {
 
         assertEquals(10.0, sale.getRunningTotal(), "Running total is not correct");
         assertEquals(2.0, sale.getTotalVAT(), "Total VAT is not correct");
-    }*/
+    }
 }
 
     
