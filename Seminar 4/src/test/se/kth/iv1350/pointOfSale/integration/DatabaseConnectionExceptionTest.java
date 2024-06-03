@@ -18,7 +18,7 @@ public class DatabaseConnectionExceptionTest {
     public void testErrorMessage() {
         String errorMessage = "InventoryDatabaseFailure";
         DatabaseConnectionException exception = new DatabaseConnectionException(errorMessage);
-        assertEquals("Database " + errorMessage + " is not responding...", exception.getMessage(), "Error message is incorrect");
+        assertEquals("Database " + errorMessage + " is not responding...\nPlease try again or contact support", exception.getMessage(), "Error message is incorrect");
     }
 
     @Test
@@ -28,7 +28,7 @@ public class DatabaseConnectionExceptionTest {
         assertTrue(exception instanceof RuntimeException, "Exception type is incorrect");
     }
 
-        @Test
+    @Test
     public void testIdentifierToExceptions() {
         String itemID = "abc123";
         InventorySystem invSys = new InventorySystem();
