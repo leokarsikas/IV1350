@@ -62,12 +62,14 @@ public class View {
                     salelog = contr.fetchSaleInfo();
                 }
                 catch (UnrecognisedItemException e){
+                    System.out.println("Invalid ItemID please try another id");
                     messageCreator.log(e.getMessage());
                 }
                 catch (DatabaseConnectionException e){
                     switchLogger(new FileLogger("Errorlog.txt"));
-                    messageCreator.log(e.getMessage());
+                    messageCreator.log(e.getStackTraceAsString());
                     switchLogger(new SystemOutLogger());
+                    messageCreator.log(e.getMessage());
                 }
                 if (currentItem != null){
                     messageCreator.log("Item ID: " + currentItem.getID());
