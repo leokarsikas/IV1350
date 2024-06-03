@@ -29,14 +29,14 @@ public class Printer {
 
         System.out.println("Time of sale: "+saleLog.getTimeOfSale().format(dateFormat)+"\n");
 
-        for (int i = 0; i < saleLog.getLength(); i++) {
+        int i = 0;
+        while(saleLog.getItemFromList(i) != null) {
             ItemDTO item = saleLog.getItemFromList(i);
-            if (item != null){
-                System.out.print(item.getName()+"         ");
-                System.out.print(item.getQuantity()+" x ");
-                System.out.print(doubleDecimal.format(item.getPrice())+"    ");
-                System.out.println(doubleDecimal.format(item.getPrice()*item.getQuantity())+" SEK");
-            }
+            System.out.print(item.getName()+"         ");
+            System.out.print(item.getQuantity()+" x ");
+            System.out.print(doubleDecimal.format(item.getPrice())+"    ");
+            System.out.println(doubleDecimal.format(item.getPrice()*item.getQuantity())+" SEK");
+            i++;
         }
 
         System.out.println("\nTotal:                                "+doubleDecimal.format(saleLog.getRunningTotal())+" SEK");
