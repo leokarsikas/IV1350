@@ -10,9 +10,8 @@ import java.io.StringWriter;
 public class DatabaseConnectionException extends RuntimeException {
 
     public DatabaseConnectionException(String errorMessage) {
-        super("Database "+errorMessage+" is not responding...\nPlease try again or contact support");
+        super("Database "+errorMessage+" is not responding...");
     }
-
       public String getStackTraceAsString() {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
