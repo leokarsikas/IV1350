@@ -69,3 +69,33 @@ Item identifier "ghi789" does not exist in inventory.
 Sale 3 errors: 
 Item identifier "ghi789" does not exist in inventory.
 Database "InventorySystem" is not responding.
+
+Sale 1 errors: 
+
+Sale 2 errors: 
+
+Sale 3 errors: 
+se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException: Database "InventorySystem" is not responding...
+Please try again or contact support
+	at se.kth.iv1350.pointOfSale.integration.InventorySystem.itemLookup(InventorySystem.java:41)
+	at se.kth.iv1350.pointOfSale.model.Sale.addNewItem(Sale.java:146)
+	at se.kth.iv1350.pointOfSale.model.Sale.addItem(Sale.java:128)
+	at se.kth.iv1350.pointOfSale.controller.Controller.enterInfo(Controller.java:65)
+	at se.kth.iv1350.pointOfSale.view.View.simulate(View.java:61)
+	at se.kth.iv1350.pointOfSale.startup.Main.main(Main.java:24)
+
+
+Sale 1 errors: 
+
+Sale 2 errors: 
+
+Sale 3 errors: 
+se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException: Database "InventorySystem" is not responding...
+Please try again or contact support
+	at se.kth.iv1350.pointOfSale.integration.InventorySystem.itemLookup(InventorySystem.java:41)
+	at se.kth.iv1350.pointOfSale.model.Sale.addNewItem(Sale.java:146)
+	at se.kth.iv1350.pointOfSale.model.Sale.addItem(Sale.java:128)
+	at se.kth.iv1350.pointOfSale.controller.Controller.enterInfo(Controller.java:65)
+	at se.kth.iv1350.pointOfSale.view.View.simulate(View.java:61)
+	at se.kth.iv1350.pointOfSale.startup.Main.main(Main.java:24)
+
