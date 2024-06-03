@@ -1,4 +1,4 @@
-package test.model;
+package se.kth.iv1350.pointOfSale.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,8 @@
-package test.model;
+package se.kth.iv1350.pointOfSale.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
-import se.kth.iv1350.pointOfSale.model.Item;
 
 import static org.junit.jupiter.api.Assertions.*;
 

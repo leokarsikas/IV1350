@@ -1,6 +1,6 @@
-package test.controller;
+package se.kth.iv1350.pointOfSale.controller;
 
-import se.kth.iv1350.pointOfSale.controller.Controller;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
@@ -8,8 +8,7 @@ import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
 import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
 import se.kth.iv1350.pointOfSale.integration.Printer;
-import se.kth.iv1350.pointOfSale.model.Item;
-import se.kth.iv1350.pointOfSale.model.Sale;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
