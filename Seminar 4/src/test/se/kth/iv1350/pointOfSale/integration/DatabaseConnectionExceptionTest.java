@@ -18,7 +18,7 @@ public class DatabaseConnectionExceptionTest {
     public void testErrorMessage() {
         String errorMessage = "InventoryDatabaseFailure";
         DatabaseConnectionException exception = new DatabaseConnectionException(errorMessage);
-        assertEquals("Database " + errorMessage + " is not responding.", exception.getMessage(), "Error message is incorrect");
+        assertEquals("Database " + errorMessage + " is not responding...", exception.getMessage(), "Error message is incorrect");
     }
 
     @Test
