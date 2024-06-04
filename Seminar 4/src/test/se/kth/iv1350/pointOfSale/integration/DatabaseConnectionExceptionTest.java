@@ -44,7 +44,7 @@ public class DatabaseConnectionExceptionTest {
                 assertEquals("abc123", itemID,"Expected an exception to be thrown!");
             }
             catch (UnrecognisedItemException e){
-                //assertEquals("ghi789", itemID,itemID+" should not result in an UnrecognisedItemException being thrown!");
+                assertEquals("ghi789", itemID,itemID+" should not result in an UnrecognisedItemException being thrown!");
             }
             catch (DatabaseConnectionException e){
                 assertEquals("serverNotResponding", itemID, itemID+" should not result in an DatabaseConnectionException being thrown!");

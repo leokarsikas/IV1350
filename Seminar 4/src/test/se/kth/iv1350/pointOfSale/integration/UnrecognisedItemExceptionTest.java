@@ -39,7 +39,7 @@ public class UnrecognisedItemExceptionTest {
                 assertEquals("ghi789", itemID,itemID+" should not result in an UnrecognisedItemException being thrown!");
             }
             catch (DatabaseConnectionException e){
-                //assertEquals("serverNotResponding", itemID, itemID+" should not result in an DatabaseConnectionException being thrown!");
+                assertEquals("serverNotResponding", itemID, itemID+" should not result in an DatabaseConnectionException being thrown!");
             }
         }
     }
