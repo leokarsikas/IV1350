@@ -1,9 +1,12 @@
 
 Sale 1 errors: 
+Item identifier "ghi789" does not exist in inventory.
 
 Sale 2 errors: 
+Item identifier "ghi789" does not exist in inventory.
 
 Sale 3 errors: 
+Item identifier "ghi789" does not exist in inventory.
 se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException: Database "InventorySystem" is not responding...
 Please try again or contact support
 	at se.kth.iv1350.pointOfSale.integration.InventorySystem.itemLookup(InventorySystem.java:41)
