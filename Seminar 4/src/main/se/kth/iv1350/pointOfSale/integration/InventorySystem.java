@@ -28,6 +28,8 @@ public class InventorySystem {
  * The 'itemLookup' does a lookup in the inventory system based on the itemID
  * @param itemID represents the ID of the item
  * @return a new instance of an ItemDTO based on the specified itemID.
+ * @throws UnrecognisedItemException if the itemID is not recognised in the inventory system.
+ * @throws DatabaseConnectionException if the connection to the inventory system is lost.
  */
     public ItemDTO itemLookup(String itemID) throws UnrecognisedItemException, DatabaseConnectionException{
             if (itemID == "abc123") {
