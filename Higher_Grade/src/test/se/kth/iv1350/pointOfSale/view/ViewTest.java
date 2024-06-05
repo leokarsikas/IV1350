@@ -50,35 +50,26 @@ public class ViewTest {
     
         // Create a View instance with the Controller
         View view = new View(controller, messageCreator);
-        LocalDateTime time = LocalDateTime.now();
-        // Run the simulate method
+       
         view.simulate();
-        ItemDTO currentItem = new ItemDTO("asd123", "Item 1", 10.0, "A test item", 2, 25);
-        
-        Item item1 = new Item(currentItem);
-        ArrayList<Item>  items = new ArrayList<Item>();
-        items.add(item1);
-        
-        SaleLogDTO salelog = new SaleLogDTO(items, 20.0, 5.0,time, 25.0, 5.0);
         // Capture the output
         String result = outPut.toString();
 
-        // Verify the output contains expected messages
+
         assertTrue(result.contains("Start new sale! This is sale number"), "Start sale message not found.");
-        assertEquals("Item ID: " + currentItem.getID(), "Item ID: " + "asd123");
-        assertEquals("Item name:" + currentItem.getName(), "Item name:" + "Item 1");
-        assertEquals("Item price:" + doubleDecimal.format(currentItem.getPrice()), "Item price:" + "10,00");
-        assertEquals("Item VAT:" + noDecimal.format(currentItem.getVAT()), "Item VAT:" + "25");
-        assertEquals("Item description:" + currentItem.getDescription(), "Item description:" + "A test item");
+        assertTrue(result.contains("abc123"), "ItemID not found during simulation");
+        assertTrue(result.contains("BigWheel Oatmeal"), "Item name not found during simulation");
+        assertTrue(result.contains("29,90"), "price does not exist in view simulation");
+        assertTrue(result.contains("6"),"item VAT does not exist in view simulation");
+        assertTrue(result.contains("Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free"), "Item description does not exist in view simulation");
         
         
         
-        assertEquals("Total cost (incl VAT):"+ doubleDecimal.format(salelog.getRunningTotal()) , "Total cost (incl VAT):"+ "20,00");
-        assertEquals(("Total VAT:" + doubleDecimal.format(salelog.getTotalVAT())), "Total VAT:" + "5,00");
+        assertTrue(result.contains("59,70"), "Total cost (incl VAT) does not exist in view simulation");
+        assertTrue(result.contains("3,38"), "Total VAT Does not exist in view simulation");
         assertTrue(result.contains("End sale!"), "End sale message not found.");
 
-
-        assertTrue(result.contains("Customer pays"), "Payment message not found.");
+        assertTrue(result.contains("100"), "Payment message not found.");
         assertTrue(result.contains("Change to give the customer:"), "Change message not found.");
     }
 

@@ -12,8 +12,8 @@ public abstract class RevenueObserverTemplate implements RevenueObserver {
 
     /*
      * Adds running total when a sale is done into the total revenue.
-     * 
-     * @param runningTotal is the sale total which will be added to the total revenue.
+     *
+     * @param runningTotal is the sale's runnning total which will be added to the total revenue.
      */
     @Override
     public void updateRevenue(double runningTotal) {
