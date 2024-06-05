@@ -55,15 +55,13 @@ public class ViewTest {
         // Capture the output
         String result = outPut.toString();
 
-
+        // Mockup values that should be present in the View simulation
         assertTrue(result.contains("Start new sale! This is sale number"), "Start sale message not found.");
         assertTrue(result.contains("abc123"), "ItemID not found during simulation");
         assertTrue(result.contains("BigWheel Oatmeal"), "Item name not found during simulation");
         assertTrue(result.contains("29,90"), "price does not exist in view simulation");
         assertTrue(result.contains("6"),"item VAT does not exist in view simulation");
         assertTrue(result.contains("Bigwheel Oatmeal 500g, whole grain oats, high fiber, gluten free"), "Item description does not exist in view simulation");
-        
-        
         
         assertTrue(result.contains("59,70"), "Total cost (incl VAT) does not exist in view simulation");
         assertTrue(result.contains("3,38"), "Total VAT Does not exist in view simulation");
