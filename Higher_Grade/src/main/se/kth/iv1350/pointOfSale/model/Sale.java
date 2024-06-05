@@ -2,12 +2,14 @@ package se.kth.iv1350.pointOfSale.model;
 
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 import se.kth.iv1350.pointOfSale.DTO.SaleLogDTO;
-import se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException;
 import se.kth.iv1350.pointOfSale.integration.InventorySystem;
-import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
 import se.kth.iv1350.pointOfSale.integration.Printer;
+import se.kth.iv1350.pointOfSale.integration.UnrecognisedItemException;
+import se.kth.iv1350.pointOfSale.integration.DatabaseConnectionException;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 
 /**
  * The sale class keeps track of sale instance of a
@@ -15,9 +17,8 @@ import java.time.LocalDateTime;
  */
 
 public class Sale {
-    private Printer printer;
     private double runningTotal;
-    private Item[] items;
+    private ArrayList<Item> items;
     private int itemsCounter = 0;
     private LocalDateTime time;
     private Receipt receipt;
@@ -25,16 +26,17 @@ public class Sale {
     private double amountPaid;
     private double change;
     private InventorySystem inventorySystem;
+    private Printer printer;
     private RevenueObserver[] revenueObservers;
 
 /**
  * Constructor that creates a new instance of a Sale
  * @param invSyst represents the inventory system so that 
  */
-    public Sale(InventorySystem invSyst, Printer printer){
-        this.printer = printer;
+    public Sale(InventorySystem invSyst, Printer print){
         this.runningTotal = 0;
-        this.items = new Item[10]; //Arbitrary size for now
+        this.items = new ArrayList<>();
+        this.printer = print;
         setTimeOfSale();
         this.receipt = new Receipt();
         this.inventorySystem = invSyst;
@@ -85,14 +87,14 @@ public class Sale {
         return change;
     }
 
-    private void notifyRevenueObserver(){
+     private void notifyRevenueObserver(){
         for(int i = 0; i < revenueObservers.length; i++){
             if(revenueObservers[i] != null)
                 revenueObservers[i].updateRevenue(this.runningTotal);
         }
     }
 
-    public void addAllObservers(RevenueObserver[] revenueObservers){
+     public void addAllObservers(RevenueObserver[] revenueObservers){
         this.revenueObservers = revenueObservers;
     }
 
@@ -118,24 +120,24 @@ public class Sale {
      * @throws UnrecognisedItemException is thrown if the itemID is not found in the inventory.
      * @throws DatabaseConnectionException is thrown if the database is not responding.
      * */
-    public ItemDTO addItem(String itemID) throws UnrecognisedItemException, DatabaseConnectionException {
+    public ItemDTO addItem(String itemID) throws UnrecognisedItemException, DatabaseConnectionException{
         ItemDTO item;
         int currentItemIndex = isItemAlreadyInSale(itemID);
 
         if (currentItemIndex < itemsCounter)
-            items[currentItemIndex].increaseQuantity();
-        else {
+            items.get(currentItemIndex).increaseQuantity();
+        else
             addNewItem(itemID);
-        }
-        item = new ItemDTO(items[currentItemIndex]);
+
+        item = new ItemDTO(items.get(currentItemIndex));
         updateSale(item);
 
         return item;
     }
     
     private int isItemAlreadyInSale(String itemID){
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getID().equals(itemID)) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) != null && items.get(i).getID().equals(itemID)) {
                 return i;
             }
         }
@@ -143,8 +145,9 @@ public class Sale {
     }
 
     private void addNewItem(String itemID) throws UnrecognisedItemException, DatabaseConnectionException{
-            ItemDTO item = inventorySystem.itemLookup(itemID);
-            items[itemsCounter++] = new Item(item);
+        ItemDTO item =  inventorySystem.itemLookup(itemID);
+        items.add(new Item(item));
+        itemsCounter++;
     }
 
     private void updateSale(ItemDTO item){
@@ -153,4 +156,5 @@ public class Sale {
         this.runningTotal += itemPrice;
         this.totalVAT += itemNumVAT;
     }
+
 }

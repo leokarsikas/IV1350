@@ -1,6 +1,8 @@
 package se.kth.iv1350.pointOfSale.DTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import se.kth.iv1350.pointOfSale.model.Item;
 import se.kth.iv1350.pointOfSale.DTO.ItemDTO;
 
@@ -11,10 +13,10 @@ public class SaleLogDTO {
     private LocalDateTime time;
     private double amountPaid;
     private double change;
-    private Item[] items;
+    private ArrayList<Item> items;
 
-    public SaleLogDTO(Item[] items, double runningTotal, double totalVAT, LocalDateTime time, double amountPaid, double change){
-        this.items = items;
+    public SaleLogDTO(ArrayList<Item> items2, double runningTotal, double totalVAT, LocalDateTime time, double amountPaid, double change){
+        this.items = items2;
         this.runningTotal = runningTotal;
         this.totalVAT = totalVAT;
         this.time = time;
@@ -56,7 +58,7 @@ public class SaleLogDTO {
     /**
      * length of the list of items
      */
-    public int getLength(){ return this.items.length; }
+    public int getLength(){ return this.items.size(); }
 
     /**
      * Get an ItemDTO from the items list at the specified index
@@ -64,8 +66,8 @@ public class SaleLogDTO {
      * @return an ItemDTO of the item at the specified index
      */
     public ItemDTO getItemFromList(int index) { 
-        if (items[index] != null)
-            return new ItemDTO(items[index]); 
+        if (index >= 0 && index < items.size())
+            return new ItemDTO(items.get(index)); 
         return null;
     }
 
