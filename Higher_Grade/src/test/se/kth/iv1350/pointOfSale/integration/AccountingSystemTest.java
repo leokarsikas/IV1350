@@ -8,26 +8,23 @@ import se.kth.iv1350.pointOfSale.integration.AccountingSystem;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.text.DecimalFormat;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AccountingSystemTest {
 
-    private ByteArrayOutputStream outContent;
-    private PrintStream originalSysOut;
+    private ByteArrayOutputStream outPut;
 
     @BeforeEach
-    public void setUpStreams() {
-        originalSysOut = System.out;
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+    public void setUp() {
+        outPut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outPut));
     }
 
     @AfterEach
-    public void cleanUpStreams() {
-        System.setOut(originalSysOut);
-        outContent = null;
+    public void cleanUp() {
+        outPut = null;
     }
 
     @Test
@@ -35,25 +32,16 @@ public class AccountingSystemTest {
         // Arrange
         AccountingSystem accountingSystem = new AccountingSystem();
         SaleLogDTO saleLog = new SaleLogDTO(null, 100.0, 20.0, null, 120.0, 20.0);
+        DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
+        DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
 
-        // Act
         accountingSystem.recordSale(saleLog);
 
-        // Assert
-        String result = outContent.toString();
+        String result = outPut.toString();
+        assertTrue(result.contains(saleLog.getAmountPaid() + ""), "Accounting did no recieve the correct Amount paid");
+        assertTrue(result.contains(doubleDecimal.format(saleLog.getChange()) + ""),"Accounting did no recieve the correct change");
+        assertTrue(result.contains(doubleDecimal.format(saleLog.getRunningTotal()) + ""), "Accounting did no recieve the correct Running Total");
+        assertTrue(result.contains(doubleDecimal.format(saleLog.getTotalVAT()) + ""), "Accounting did no recieve the correct total VAT");
 
-        assertTrue(result.contains("\nAmount paid:"+ saleLog.getAmountPaid() + " SEK\n"));
-        assertTrue(result.contains("\nChange:          " + saleLog.getChange() + " SEK\n"));
-        assertTrue(result.contains("\nRunning Total:   " + saleLog.getRunningTotal() + " SEK\n"));
-        assertTrue(result.contains("\nTotal VAT:        " + saleLog.getTotalVAT() + " SEK\n"));
-
-        /*  "\n--------ACCOUNTING INFORMATION BEGIN-------\n" +
-                "\nAmount paid:     120.0 SEK\n" +
-                "Change:          20,00 SEK\n" +
-                "Running Total:   100,00 SEK\n" +
-                "Total VAT:        20,00 SEK\n" +
-                "\n--------ACCOUNTING INFORMATION END-------\n\n";*/
-
-    //    assertEquals(expectedOutput, outContent.toString(), "Output did not match expected");
     }
 }

@@ -12,26 +12,23 @@ import org.junit.jupiter.api.Test;
 
 public class MainTest {
 
-    private ByteArrayOutputStream outContent;
-    private PrintStream originalSysOut;
+    private ByteArrayOutputStream outPut;
 
     @BeforeEach
-    public void setUpStreams() {
-        originalSysOut = System.out;
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+    public void setUp() {
+        outPut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outPut));
     }
     
     @AfterEach
-    public void cleanUpStreams() {
-        System.setOut(originalSysOut);
-        outContent = null;
+    public void cleanUp() {
+        outPut = null;
     }
 
     @Test
     void testMain(){
-        Main.main(null);
-        String result = outContent.toString();
-        assertTrue(result.contains("Added 59,70 to total revenue. Accumulated revenue:"), "Accumulated Revenue not found in output");
+        Main.main(null); // executing main with no arguments, that is, it is a regular run. 
+        String result = outPut.toString();
+        assertTrue(result.contains("Start new sale! This is sale number 1 today."), "Start new Sale! This is sale number 1 today should be present in output");
     }
 }

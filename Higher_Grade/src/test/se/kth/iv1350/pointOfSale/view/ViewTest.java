@@ -24,21 +24,18 @@ import java.text.DecimalFormat;
 
 public class ViewTest {
 
-    private ByteArrayOutputStream outContent;
-    private PrintStream originalSysOut;
+    private ByteArrayOutputStream outPut;
     DecimalFormat doubleDecimal = new DecimalFormat("#0.00"); //Just for nice output
     DecimalFormat noDecimal = new DecimalFormat("#0"); //Just for nice output
     @BeforeEach
-    public void setUpStreams() {
-        originalSysOut = System.out;
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+    public void setUp() {
+        outPut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outPut));
     }
 
     @AfterEach
-    public void cleanUpStreams() {
-        System.setOut(originalSysOut);
-        outContent = null;
+    public void cleanUp() {
+        outPut = null;
     }
 
     @Test
@@ -64,7 +61,7 @@ public class ViewTest {
         
         SaleLogDTO salelog = new SaleLogDTO(items, 20.0, 5.0,time, 25.0, 5.0);
         // Capture the output
-        String result = outContent.toString();
+        String result = outPut.toString();
 
         // Verify the output contains expected messages
         assertTrue(result.contains("Start new sale! This is sale number"), "Start sale message not found.");

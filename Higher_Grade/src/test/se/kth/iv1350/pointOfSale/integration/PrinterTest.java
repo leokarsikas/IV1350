@@ -18,20 +18,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PrinterTest {
 
-    private ByteArrayOutputStream outContent;
-    private PrintStream originalSysOut;
+    private ByteArrayOutputStream outPut;
 
     @BeforeEach
     public void setUpStreams() {
-        originalSysOut = System.out;
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        outPut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outPut));
     }
 
     @AfterEach
     public void cleanUpStreams() {
-        System.setOut(originalSysOut);
-        outContent = null;
+        outPut = null;
     }
 
     @Test
@@ -59,7 +56,7 @@ public class PrinterTest {
         printer.printReceipt(saleLog);
 
         // Capture the output
-        String result = outContent.toString();
+        String result = outPut.toString();
 
         // Verify the output contains expected strings
         assertTrue(result.contains("------------Begin receipt------------"), "Receipt did not start correctly.");
